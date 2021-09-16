@@ -1,0 +1,1139 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #b6c4d1;
+    font-family: Zona Pro, Sans-Serif;
+}
+
+
+/*encabezado*/
+
+.header1 {
+    display: inline-block;
+    background-color: black;
+    width: 100%;
+    height: 54px;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+#user {
+    color: #b6c4d1;
+}
+
+.menu_bar {
+    display: none;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon {
+    color: #6c757d;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.icon-salir {
+    color: #6c757d;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.icon-salir:hover {
+    color: white;
+}
+
+.redes ul li a:hover {
+    color: white;
+}
+
+
+/*inicio de sesion*/
+
+.inicio_sesion {
+    margin: 0 auto;
+    margin-top: 5rem;
+    width: 20rem;
+    padding: 20px;
+}
+
+.logo2 {
+    margin: 0 auto;
+    width: 15em;
+}
+
+#ingresar {
+    text-align: center;
+    font-family: open sans, sans-serif;
+    font-size: 1.5em;
+    display: block;
+    padding: 18px;
+}
+
+.control {
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    height: 35px;
+    font-style: italic;
+    padding: 6px 2px;
+}
+
+.boton {
+    width: 100%;
+    height: 30px;
+    background-color: #2471A3;
+    border-radius: 5px;
+    color: white;
+    font: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.boton a:hover {
+    background: #6c757d;
+    color: blue;
+}
+
+.botones {
+    text-decoration: none;
+    text-align: center;
+}
+
+.boton-panel {
+    color: #6c757d;
+    text-decoration: none;
+    padding: 15px;
+}
+
+
+/*panel principal*/
+
+.container-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.card {
+    width: 15%;
+    color: #6c757d;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-15px);
+}
+
+.container-card .card img {
+    width: 100%;
+}
+
+.container-card .card-usuarios img {
+    width: 100%;
+}
+
+.container-card .card-reportes img {
+    width: 100%;
+}
+
+.card h4 {
+    font-size: 1.5em;
+    color: #6c757d;
+}
+
+@media screen and (max-width: 800px) {
+    .card h4 {
+        font-size: 1em;
+        color: #6c757d;
+    }
+    .card-reportes h4,
+    .card-usuarios h4 {
+        font-size: 1em;
+        color: #6c757d;
+    }
+    .container-card {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size: 20px;
+        padding: 15px;
+        align-items: center;
+        text-align: right;
+    }
+}
+
+
+/*barra de navegacion*/
+
+.container-accesos {
+    width: 100%;
+    justify-content: center;
+    background: #6c757d;
+    display: flex;
+    padding: 5px;
+}
+
+.navigation-accesos ul {
+    margin: 0%;
+    padding: 3px;
+    list-style: none;
+}
+
+.navigation-accesos ul li {
+    display: inline-block;
+}
+
+.navigation-accesos ul li a {
+    display: block;
+    color: rgb(107, 177, 238);
+    font-size: 0.9em;
+    padding: 5px 15px;
+    transition: all 0.4s linear;
+    text-decoration: none;
+}
+
+.navigation-accesos ul li a:hover {
+    background: rgb(107, 177, 238);
+    color: #03052b;
+}
+
+.navigation-accesos a {
+    font: 1em verdana, geneva, sans-serif;
+    font: bold;
+}
+
+@media screen and (max-width: 800px) {
+    .container-accesos {
+        display: none;
+        width: 100%;
+        justify-content: space-between;
+        background: #6c757d;
+        padding: 5px;
+    }
+    .container-accesos .navigation-accesos ul {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        height: 100%;
+        position: fixed;
+        margin: 0;
+    }
+    .navigation-accesos a {
+        font: 1em verdana, geneva, sans-serif;
+    }
+    .menu_bar {
+        display: block;
+    }
+    .menu_bar .bt-menu {
+        color: #b6c4d1;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #cerrarMenu {
+        display: block;
+    }
+}
+
+
+/*formulario de venta*/
+
+.container-form {
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+    color: #2471A3;
+    display: block;
+}
+
+.control2 {
+    display: block;
+    width: 100%;
+    background: #6c757d;
+    font-size: 1em;
+}
+
+.control3 {
+    width: 70%;
+    background: #6c757d;
+    font-size: 1em;
+}
+
+.form-venta {
+    font-size: 1.1em;
+    width: 22%;
+    padding: 15px;
+    float: left;
+    margin-top: 3%;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.form-title {
+    text-align: center;
+}
+
+.boton-agregar {
+    width: 45%;
+    height: 30px;
+    background-color: #2471A3;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.boton-cancelar {
+    width: 45%;
+    height: 30px;
+    background-color: rgb(161, 28, 28);
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/*tabla usuarios*/
+
+.container-tabla-usuarios {
+    display: block;
+    padding: 10px;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 80%;
+    text-align: center;
+    font-size: large;
+}
+
+.container-tabla-usuarios h1 {
+    color: #2471A3;
+    font-size: 1.8em;
+}
+
+.tabla-usuarios {
+    width: 100%;
+    height: 100%;
+    color: #2471A3;
+    border: solid #2471A3 1px;
+}
+
+.tabla-usuarios tr th {
+    border: solid #2471A3 1px;
+}
+
+.tabla-usuarios td {
+    border: solid #2471A3 1px;
+    height: 20px;
+}
+
+.btn-modificar {
+    height: 2.2em;
+    background-color: #2471A3;
+    color: white;
+    font-size: 0.8em;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.btn-modificar:hover {
+    background-color: #43a0df;
+}
+
+.btn-eliminar {
+    height: 2.2em;
+    width: 100%;
+    color: white;
+    font-size: 0.8em;
+    cursor: pointer;
+    background-color: rgb(161, 28, 28);
+    font-weight: bold;
+}
+
+.btn-eliminar:hover {
+    background-color: rgb(248, 87, 87);
+}
+
+.btn-buscar {
+    width: 10%;
+    height: 2.2em;
+    background-color: #2471A3;
+    color: white;
+    font-size: 0.8em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-buscar:hover {
+    background-color: #43a0df;
+}
+
+.control-buscar {
+    font-size: 0.9em;
+    width: 57%;
+    font-style: italic;
+    padding: 6px 2px;
+}
+
+.btn-crear {
+    width: 20%;
+    height: 2.2em;
+    background-color: #2471A3;
+    color: white;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-crear:hover {
+    background-color: #43a0df;
+}
+
+.container-tabla {
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    color: #2471A3;
+    margin-left: 30%;
+}
+
+.tabla-venta {
+    width: 100%;
+    height: 100%;
+    color: #2471A3;
+    border: solid #2471A3 1px;
+    align-items: center;
+}
+
+.tabla-venta tr th {
+    border: solid #2471A3 1px;
+    padding: 5px;
+}
+
+.tabla-venta td {
+    border: solid #2471A3 1px;
+    height: 20px;
+}
+
+.tabla-venta H1 {
+    color: rgb(161, 28, 28);
+}
+
+tr.par {
+    background: #6c757d;
+}
+
+#boton-pagar {
+    float: right;
+    margin-right: 100px;
+    margin-top: 10px;
+    width: 15%;
+    height: 30px;
+    background-color: #2471A3;
+    border-radius: 5px;
+    color: white;
+    font: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.medio-pago {
+    width: 40%;
+    margin-top: 100px;
+    float: left;
+    transition: all 0.25s;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.boton-pago {
+    width: 45%;
+}
+
+.medio-pago .boton-pago {
+    color: #2471A3;
+    text-align: center;
+    transition: all 0.25s;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.medio-pago .boton-pago:hover {
+    background: #6c757d;
+    color: #b6c4d1;
+}
+
+#medio {
+    margin-left: 32%;
+    font-size: 165%;
+    color: #2471A3;
+}
+
+.cuadro-pago {
+    padding: 20px;
+    left: 30%;
+    top: 30%;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    display: none;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.boton-pagar {
+    width: 40%;
+    margin-top: 8%;
+    margin-left: 30%;
+    display: flex;
+    justify-content: space-between
+}
+
+.control-pago {
+    position: absolute;
+    height: 30px;
+    margin-left: 35%;
+    margin-top: 1%;
+}
+
+.pago-exitoso {
+    padding: 20px;
+    left: 35%;
+    top: 35%;
+    box-shadow: 7px 13px 37px #000;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: center;
+    display: none;
+}
+
+.tarjeta-pago {
+    padding: 20px;
+    left: 35%;
+    top: 35%;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: center;
+    box-shadow: 7px 13px 37px #000;
+    display: none;
+}
+
+.producto-agregado {
+    padding: 20px;
+    left: 35%;
+    top: 35%;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: center;
+    display: none;
+    box-shadow: 7px 13px 37px #000;
+}
+
+
+/*consulta y registr de clientes*/
+
+.boton-cliente {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 180px;
+    display: block;
+    text-align: center;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.registrar-cliente {
+    background: #6c757d;
+    color: #b6c4d1;
+    text-decoration: none;
+    padding: 30px;
+    margin-left: 30%;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.consultar-cliente {
+    background: #6c757d;
+    color: #b6c4d1;
+    text-decoration: none;
+    padding: 30px;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.boton-cliente a:hover {
+    background: black;
+}
+
+.registro-cliente {
+    text-align: center;
+    color: #6c757d;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+.formulario-registro-cliente {
+    width: 30%;
+    font-size: 24px;
+    margin-top: 30px;
+    margin-left: 35%;
+    padding: 20px;
+    box-shadow: 7px 13px 37px #000;
+    display: flex;
+    background: #6c757d;
+}
+
+.control-registro {
+    background: #b6c4d1;
+    border: black solid 3px;
+    font-size: 14px;
+    text-align: right;
+    width: 40%;
+    color: black;
+    float: right;
+}
+
+.tipo-option {
+    background: #b6c4d1;
+    font-size: 0.8em;
+    color: #2471A3;
+}
+
+.btn-form {
+    background-color: #b6c4d1;
+    border: #2471A3 solid 1px;
+    color: #2471A3;
+    float: right;
+}
+
+.cliente-agregado {
+    padding: 20px;
+    left: 30%;
+    top: 35%;
+    box-shadow: 7px 13px 37px #000;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: center;
+    display: block;
+}
+
+.cuadro-consulta-cliente {
+    padding: 20px;
+    left: 30%;
+    top: 28%;
+    box-shadow: 7px 13px 37px #000;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: left;
+    display: none;
+}
+
+.boton-agregar2 {
+    width: 48%;
+    height: 30px;
+    background-color: #2471A3;
+    border-radius: 5px;
+    color: white;
+    font: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.boton-cancelar2 {
+    width: 48%;
+    height: 30px;
+    background-color: rgb(161, 28, 28);
+    border-radius: 5px;
+    color: white;
+    font: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#btn-aceptar {
+    width: 100%;
+    height: 30px;
+    background-color: #2471A3;
+    border-radius: 5px;
+    color: white;
+    font: bold;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.formulario-consulta-cliente {
+    width: 30%;
+    font-size: 24px;
+    margin-top: 30px;
+    margin-left: 35%;
+    padding: 20px;
+    box-shadow: 7px 13px 37px #000;
+    display: flex;
+    background: #6c757d;
+}
+
+
+/*consulta y registro de proveedor*/
+
+.boton-consultar {
+    width: 48%;
+    height: 30px;
+    background-color: #2471A3;
+    border-radius: 5px;
+    color: white;
+    font: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.boton-proveedor {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 180px;
+    display: block;
+    text-align: center;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.consultar-proveedor {
+    background: #6c757d;
+    color: #b6c4d1;
+    text-decoration: none;
+    padding: 30px;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.boton-proveedor a:hover {
+    background: black;
+}
+
+.registrar-proveedor {
+    background: #6c757d;
+    color: #b6c4d1;
+    text-decoration: none;
+    padding: 30px;
+    margin-left: 30%;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.registro-proveedor {
+    text-align: center;
+    color: #6c757d;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+.formulario-registro-proveedor {
+    width: 30%;
+    font-size: 24px;
+    margin-top: 30px;
+    margin-left: 35%;
+    padding: 20px;
+    box-shadow: 7px 13px 37px #000;
+    display: flex;
+    background: #6c757d;
+}
+
+.noItem option:first-child {
+    display: none;
+}
+
+.proveedor-agregado {
+    padding: 20px;
+    left: 30%;
+    top: 35%;
+    box-shadow: 7px 13px 37px #000;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: center;
+    display: none;
+}
+
+.cuadro-consulta-proveedor {
+    padding: 20px;
+    left: 30%;
+    top: 28%;
+    box-shadow: 7px 13px 37px #000;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: left;
+    display: none;
+}
+
+.formulario-consulta-proveedor {
+    width: 30%;
+    font-size: 24px;
+    margin-top: 30px;
+    margin-left: 35%;
+    padding: 20px;
+    box-shadow: 7px 13px 37px #000;
+    display: flex;
+    background: #6c757d;
+}
+
+
+/*reportes*/
+
+.generar-reporte {
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 5%;
+    background: #6c757d;
+    color: #b6c4d1;
+    text-align: center;
+    padding: 30px;
+    box-shadow: 7px 13px 37px #000;
+    position: absolute;
+}
+
+.tabla-reporte {
+    position: relative;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 60px;
+    text-align: center;
+    padding: 20px;
+    background: #b6c4d1;
+    display: none;
+    box-shadow: 7px 13px 37px #000;
+}
+
+#total-a-pagar {
+    color: rgb(161, 28, 28);
+    font-weight: bold;
+}
+
+.tabla-reporte h1 {
+    color: #2471A3;
+}
+
+.container-tabla-reporte {
+    width: 80%;
+}
+
+.imprimir-descargar {
+    color: #2471A3;
+    width: 7%;
+    float: right;
+    margin-top: -280px;
+    display: block;
+    margin-right: 5%;
+}
+
+
+/*formulario consulta de inventario*/
+
+.titulo-inventario h1 {
+    margin-top: 30px;
+    color: #2471A3;
+    text-align: center;
+}
+
+.container-inventario {
+    width: 20%;
+    padding: 30px;
+    color: #2471A3;
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.control-inventario {
+    display: block;
+    height: 25px;
+    width: 100%;
+    background: #6c757d;
+    font-size: 18px;
+}
+
+.container-tabla-inventario {
+    width: 70%;
+    float: right;
+    margin-top: -30%;
+    margin-right: 30px;
+}
+
+.container-tabla-inventario h1 {
+    color: #2471A3;
+    text-align: center;
+}
+
+.imprimir {
+    width: 50px;
+    float: right;
+    margin-top: 40px;
+    color: #2471A3;
+    text-align: center;
+}
+
+.agregar-inventario {
+    width: 30%;
+    font-size: 24px;
+    margin-top: 40px;
+    margin-left: 35%;
+    padding: 20px;
+    box-shadow: 7px 13px 37px #000;
+    float: left;
+    background: #6c757d;
+    display: none;
+}
+
+.control-usuario {
+    background: #b6c4d1;
+    border: black solid 3px;
+    font-size: 0.7em;
+    text-align: right;
+    width: 40%;
+    color: black;
+    float: right;
+}
+
+
+/*pagina usuarios*/
+
+.container-boton-usuario {
+    padding: 30px;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.boton-usuario {
+    padding: 30px;
+    margin-left: 10%;
+    background: #6c757d;
+    text-decoration: none;
+    color: #b6c4d1;
+    font-size: 20px;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.container-boton-usuario a:hover {
+    background: black;
+}
+
+#tipo-id {
+    background: #b6c4d1;
+    border: black solid 3px;
+    font-size: 0.7em;
+    text-align: right;
+    width: 30%;
+    color: black;
+    float: right;
+}
+
+.agregar-usuario {
+    width: 30%;
+    font-size: 1.2rem;
+    margin-top: 40px;
+    margin-left: 35%;
+    padding: 20px;
+    box-shadow: 7px 13px 37px #000;
+    float: left;
+    background: #6c757d;
+    display: block;
+}
+
+.usuario-agregado {
+    padding: 20px;
+    left: 30%;
+    top: 35%;
+    box-shadow: 7px 13px 37px #000;
+    width: 40%;
+    position: absolute;
+    background: #6c757d;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #b6c4d1;
+    text-align: center;
+    display: none;
+}
+
+.inventario h3 {
+    text-align: center;
+    color: #43a0df;
+}
+
+
+/*footer*/
+
+footer {
+    position: relative;
+    margin-top: 80px;
+    width: 100%;
+    padding: 10px;
+    clear: both;
+    color: #6c757d;
+    text-align: center;
+}
+
+.card-usuarios,
+.card-reportes {
+    width: 15%;
+    color: #6c757d;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.card-usuarios:hover,
+.card-reportes:hover {
+    transform: translateY(-15px);
+}
+
+.card-usuarios h4,
+.card-reportes h4 {
+    font-size: 1.5em;
+    color: #6c757d;
+}
+
+.btn-modificar-pass {
+    margin-left: 25%;
+    width: 45%;
+    height: 30px;
+    background-color: rgb(36, 168, 91);
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.paginador ul {
+    padding: 15px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.paginador a,
+.pageSelected {
+    color: #2471A3;
+    border: solid #2471A3 1px;
+    padding: 5px;
+    display: inline-block;
+    text-align: center;
+    width: 35px;
+    text-decoration: none;
+}
+
+.paginador a:hover {
+    background-color: #2471A3;
+    color: #b6c4d1;
+}
+
+.pageSelected {
+    background-color: #2471A3;
+    color: #b6c4d1;
+}
+
+.prevPhoto {
+    display: flex;
+    justify-content: space-between;
+    width: 160px;
+    height: 150px;
+    border: 1px solid #CCC;
+    position: relative;
+    cursor: pointer;
+    background: url(../img/uploads/subir.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin: auto;
+}
+
+.prevPhoto label {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.prevPhoto img {
+    width: 100%;
+    height: 100%;
+}
+
+.upimg,
+.notBlock {
+    display: none !important;
+}
+
+.errorArchivo {
+    font-size: 16px;
+    font-family: arial;
+    color: #cc0000;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.delPhoto {
+    color: #FFF;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background: red;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    z-index: 10;
+}
+
+#tbl_list_productos img {
+    width: 50px;
+}
+
+.imgProductoDelete {
+    width: 175px;
+}
