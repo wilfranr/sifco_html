@@ -1,12 +1,8 @@
 <?php
+    include '../../includes/conexion.php';
+    include '../../includes/header.php';
+    include '../../includes/nav.php';
 
-include '../../includes/conexion.php';
-include '../../includes/header.php';
-include '../../includes/nav.php';
-include '../../includes/script.php';
-echo'<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
-echo '<script type="text/javascript" src="../js/functions.js"></script>';
-if ($_SESSION['rol'] == 'Administrador'|| $_SESSION['rol'] == 'Vendedor'){
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +10,22 @@ if ($_SESSION['rol'] == 'Administrador'|| $_SESSION['rol'] == 'Vendedor'){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos.css">
-    <link rel="stylesheet" href="font.css">
-    <script type="text/javascript" src="../js/functions.js"></script>
-    <title>INVENTARIO</title>
+    
+    <title>Buscar</title>
 </head>
 
 <body>
+    
+    <?php
+    $search= strtolower($_REQUEST['search']);
+        if(empty($search))
+        {
+            header("Loaction: inventarios_prueba.php");
+        }
+        
+        
+        
+    ?>
     <!--Botones de usuario-->
     <div class="container-tabla-usuarios">
     <h1>INVENTARIO</h1><br>
@@ -35,28 +40,29 @@ if ($_SESSION['rol'] == 'Administrador'|| $_SESSION['rol'] == 'Vendedor'){
                         <th>FECHA VENC.</th>
                         <th>FOTO</th>
     
-        <?php 
-        //query para paginador
-        $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM producto");
-        $result_register = mysqli_fetch_array($sql_register);
-        $total_registro=$result_register['total_registro'];
+        <?php
+        
 
         $por_pagina = 5;//numero de registros que se muestran por página
-
+            
         if (empty($_GET['pagina'])){
             $pagina=1;
         }else{
             $pagina=$_GET['pagina'];
         }
+            //query para paginador
+        $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM producto WHERE codproducto LIKE '%$search%' OR nombre LIKE '%$search%' OR descripcion LIKE '%$search%' OR proveedor LIKE '%$search%' OR costo LIKE '%$search%' OR precio LIKE '%$search%' OR descuento LIKE '%$search%' OR existencia LIKE '%$search%' OR usuario_id LIKE '%$search%' OR fechaVencimiento LIKE '%$search%' ");
+        $result_register = mysqli_fetch_array($sql_register);
+        $total_registro=$result_register['total_registro'];
 
             $desde = ($pagina-1) * $por_pagina;
             $total_paginas=ceil($total_registro/$por_pagina);
 
-            $sentence="SELECT * FROM producto ORDER BY nombre LIMIT $desde, $por_pagina";
+            $sentence="SELECT codproducto, nombre, descripcion, proveedor, costo, precio, descuento, existencia, usuario_id, fechaVencimiento, foto FROM producto WHERE codproducto LIKE '%$search%' OR nombre LIKE '%$search%' OR descripcion LIKE '%$search%' OR proveedor LIKE '%$search%' OR costo LIKE '%$search%' OR precio LIKE '%$search%' OR descuento LIKE '%$search%' OR existencia LIKE '%$search%' OR usuario_id LIKE '%$search%' OR fechaVencimiento LIKE '%$search%' OR foto LIKE '%$search%'  ORDER BY codproducto LIMIT $desde, $por_pagina";
             $result = $conexion->query($sentence) or die ("Error al consultar: " .mysqli_error($conexion));
             mysqli_close($conexion);
             
-            while($rows = $result->fetch_assoc())
+            while($rows = $result->fetch_array())
             {
         ?>
                 <tr>
@@ -73,21 +79,20 @@ if ($_SESSION['rol'] == 'Administrador'|| $_SESSION['rol'] == 'Vendedor'){
                             <td><a href="../../Controlador/delete_user.php?usr=<?php echo $rows['id'] ?>"><input class="btn-eliminar" type="button" value="Eliminar"></a></td>
 
                         </tr>
-               
-
+                        
         <?php
             }
-        ?>
-    
+        
+    ?>
     </table><br><br>
 
-            <div class="paginador">
+    <div class="paginador">
             <ul>
             <?php
                 if ($pagina !=1){
             ?>
-                <li><a href="?pagina=<?php echo 1;?>">|<</a></li>
-                <li><a href="?pagina=<?php echo $pagina-1;?>"><<</a></li>
+                <li><a href="?pagina=<?php echo 1;?>&search=<?php echo $search;?>">|<</a></li>
+                <li><a href="?pagina=<?php echo $pagina-1;?>&search=<?php echo $search;?>"><<</a></li>
             <?php
                 }
                 for ($i=1; $i <= $total_paginas; $i++){  
@@ -95,38 +100,28 @@ if ($_SESSION['rol'] == 'Administrador'|| $_SESSION['rol'] == 'Vendedor'){
                     if($i == $pagina){
                         echo '<li class="pageSelected" >'.$i.'</li>';
                     }else{
-                        echo '<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
+                        echo '<li><a href="?pagina='.$i.'&search='.$search.'">'.$i.'</a></li>';
                     }
-                }  
+                }
                 if($pagina != $total_paginas){
             ?>
-                <li><a href="?pagina=<?php echo $pagina+1;?>">>></a></li>
-                <li><a href="?pagina=<?php echo $total_paginas?>">>|</a></li>
+                <li><a href="?pagina=<?php echo $pagina+1;?>&search=<?php echo $search;?>">>></a></li>
+                <li><a href="?pagina=<?php echo $total_paginas?>&search=<?php echo $search;?>">>|</a></li>
             <?php } ?>
             </ul>
             </div>
+   
 
     <form action="search_product.php" method="GET">
     <label id="buscar" for="buscar">Consultar Base de Datos </label>
-    <input type="text" class="control-buscar" id="busqueda" name="search" placeholder="Ingrese término a buscar">
-    <input class="btn-buscar" type="submit" value="Buscar" name="buscar"><br><br><br>
+    <input type="text" class="control-buscar" name="search" id="busqueda" placeholder="Ingrese término a buscar" value="<?php echo $search; ?>">
+    <input class="btn-buscar" type="submit" value="Buscar"><br><br><br>
     </form>
 
     <a href="new_user.php"><input class="btn-crear" type="button" value="Crear Usuario"></a>
-    <button onclick="prueba()"> prueba sw2</button>
 </div>
-
 
 </body>
 
-<?php include '../../includes/footer.php';
 
-}else{
-    echo'<script>
-            UserNoAccess()
-        </script>'; 
-    
-}
-?>
-        
 </html>

@@ -2,10 +2,9 @@
 <?php 
     session_start();
     if(empty($_SESSION['active'])){
-        echo '<script>';
-            echo 'alert("Usuario no tiene permisos");';
-            echo 'window.location.href= "../../Controlador/exit.php";';
-        echo '</script>';
+        echo'<script>
+            UserNoAccess()
+        </script>'; 
     }
     include 'conexion.php';
     $id = $_SESSION['id'];

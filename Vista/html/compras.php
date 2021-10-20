@@ -3,6 +3,7 @@ include '../../includes/conexion.php';
 include '../../includes/header.php';
 include '../../includes/nav.php';
 include '../../includes/script.php';
+echo '<script type="text/javascript" src="../js/functions.js"></script>';
 if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
 ?>
     <!DOCTYPE html>
@@ -12,15 +13,15 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Registro Producto</title>
+        <title>Inventario</title>
     </head>
 
     <body>
 
         <!--formulario de compra-->
-        <div class="container-form">
+        
 
-            <form class="form-venta" enctype="multipart/form-data" method="GET" action="">
+            <!-- <form class="form-venta" enctype="multipart/form-data" method="GET" action="">
                 <div class="form-title">
                     <h3>AREGAR PRODUCTO</h3><br><br>
                 </div>
@@ -62,9 +63,9 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                     $rows = mysqli_num_rows($result_producto);
                     if ($rows > 0) {
 
-                        echo '<script>';
-                        echo 'alert("Va a editar un producto existente!!");';
-                        echo '</script>';
+                        echo'<script>
+                                ProductExists()       
+                            </script>'; 
 
                         $sentence = "SELECT * FROM producto WHERE codproducto = '" . $consultar_producto . "'";
                         $result = $conexion->query($sentence) or die("Error al consultar: " . mysqli_error($conexion));
@@ -97,11 +98,16 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                             </div>
 
 
-                            <input class="boton-agregar" type="button" value="AGREGAR">
+                            <input class="boton-agregar" type="submit" value="CREAR">
                             <input class="boton-cancelar" type="button" value="CANCELAR">
-                        <?php
+            <!-- </form> -->
+                        <!-- <?php
                         }
-                    } else { ?>
+                    } else { ?> -->
+
+                    <!-- <form action="" class="form-venta">
+                        <label for="nombre">Nombre</label>
+                        <input class="control2" name="nombre" type="text"><br>
                         <label for="descripccion">Descripción</label>
                         <input class="control2" name="descripcion" type="text"><br>
                         <label for="precio_compra">Precio de Compra</label>
@@ -125,7 +131,7 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                             <div id="form_alert"></div>
                         </div>
 
-                        <input class="boton-agregar" type="button" value="CREAR">
+                        <input class="boton-agregar" type="submit" value="CREAR">
                         <input class="boton-cancelar" type="button" value="CANCELAR">
 
 
@@ -133,6 +139,8 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                     }
                 } else {
                     ?>
+                    <label for="nombre">Nombre</label>
+                    <input class="control2" name="nombre" type="text"><br>
                     <label for="descripccion">Descripción</label>
                     <input class="control2" name="descripcion" type="text"><br>
                     <label for="precio_compra">Precio de Compra</label>
@@ -156,19 +164,19 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                         <div id="form_alert"></div>
                     </div>
 
-                    <input class="boton-agregar" type="button" value="CREAR">
+                    <input class="boton-agregar" type="submit" value="CREAR">
                     <input class="boton-cancelar" type="button" value="CANCELAR">
 
-                <?php
+                <?php 
                 }
                 ?>
-            </form>
+            </form> -->
 
             <!--tabla de compra-->
             <div class="container-tabla">
 
                 <table class="tabla-venta">
-                    <h1>COMPRAS</h1><br><br>
+                    <h1>INVENTARIO</h1><br><br>
                     <tr>
                         <th>CODIGO</th>
                         <th>NOMBRE</th>

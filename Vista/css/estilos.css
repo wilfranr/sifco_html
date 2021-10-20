@@ -403,11 +403,11 @@ body {
 }
 
 .container-tabla {
-    width: 70%;
+    width: 80%;
     padding: 10px;
     text-align: center;
     color: #2471A3;
-    margin-left: 30%;
+    margin-left: 10%;
 }
 
 .tabla-venta {
