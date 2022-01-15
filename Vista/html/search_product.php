@@ -17,12 +17,7 @@
 <body>
     
     <?php
-    $search= strtolower($_REQUEST['search']);
-        if(empty($search))
-        {
-            header("Loaction: inventarios_prueba.php");
-        }
-        
+    $search= strtolower($_REQUEST['search']);      
         
         
     ?>
@@ -51,14 +46,14 @@
             $pagina=$_GET['pagina'];
         }
             //query para paginador
-        $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM producto WHERE codproducto LIKE '%$search%' OR nombre LIKE '%$search%' OR descripcion LIKE '%$search%' OR proveedor LIKE '%$search%' OR costo LIKE '%$search%' OR precio LIKE '%$search%' OR descuento LIKE '%$search%' OR existencia LIKE '%$search%' OR usuario_id LIKE '%$search%' OR fechaVencimiento LIKE '%$search%' ");
+        $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM producto WHERE codproducto LIKE '%$search%' OR nombre LIKE '%$search%' OR descripcion LIKE '%$search%' OR proveedor LIKE '%$search%' OR costo LIKE '%$search%' OR precio LIKE '%$search%' OR cantidad LIKE '%$search%' OR fechaVencimiento LIKE '%$search%' ");
         $result_register = mysqli_fetch_array($sql_register);
         $total_registro=$result_register['total_registro'];
 
             $desde = ($pagina-1) * $por_pagina;
             $total_paginas=ceil($total_registro/$por_pagina);
 
-            $sentence="SELECT codproducto, nombre, descripcion, proveedor, costo, precio, descuento, existencia, usuario_id, fechaVencimiento, foto FROM producto WHERE codproducto LIKE '%$search%' OR nombre LIKE '%$search%' OR descripcion LIKE '%$search%' OR proveedor LIKE '%$search%' OR costo LIKE '%$search%' OR precio LIKE '%$search%' OR descuento LIKE '%$search%' OR existencia LIKE '%$search%' OR usuario_id LIKE '%$search%' OR fechaVencimiento LIKE '%$search%' OR foto LIKE '%$search%'  ORDER BY codproducto LIMIT $desde, $por_pagina";
+            $sentence="SELECT codproducto, nombre, descripcion, proveedor, costo, precio, cantidad, fechaVencimiento, foto FROM producto WHERE codproducto LIKE '%$search%' OR nombre LIKE '%$search%' OR descripcion LIKE '%$search%' OR proveedor LIKE '%$search%' OR costo LIKE '%$search%' OR precio LIKE '%$search%' OR cantidad LIKE '%$search%' OR fechaVencimiento LIKE '%$search%' OR foto LIKE '%$search%'  ORDER BY codproducto LIMIT $desde, $por_pagina";
             $result = $conexion->query($sentence) or die ("Error al consultar: " .mysqli_error($conexion));
             mysqli_close($conexion);
             
@@ -69,10 +64,9 @@
                             <td><?php echo $rows['codproducto'] ?></td>
                             <td><?php echo $rows['nombre'] ?></td>
                             <td><?php echo $rows['descripcion'] ?></td>
-                            <td><?php echo $rows['existencia'] ?></td>
+                            <td><?php echo $rows['cantidad'] ?></td>
                             <td><?php echo $rows['costo'] ?></td>
                             <td><?php echo $rows['precio'] ?></td>
-                            <td><?php echo $rows['descuento'] ?></td>
                             <td><?php echo $rows['fechaVencimiento'] ?></td>
                             <td><?php echo $rows['foto'] ?></td>
                             <td><a href="modify_user.php?usr=<?php echo $rows['id'] ?>"><input class="btn-modificar" type="button" value="Modificar"></a></td>

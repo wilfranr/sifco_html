@@ -59,8 +59,8 @@
                     <td><?php echo $rows['telefono']?></td>
                     <td><?php echo $rows['correo']?></td>
                     <td><?php echo $rows['tipoId']?></td>
-                    <td><a href="modify_cliente.php?usr=<?php echo $rows['id'] ?>"><input class="btn-modificar" type="button" value="Modificar"></a></td>
-                    <td><input class="btn-eliminar" type="button" value="Eliminar" onclick="DeleteClient()"></td>
+                    <td><a href="modify_cliente.php?usr=<?php echo $rows['id'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></a></td>
+                    <td><a href="#" onclick="DeleteClient()"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
                     
                 </tr>
 

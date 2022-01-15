@@ -63,8 +63,8 @@
                     <td><?php echo $rows['direccion']?></td>
                     <td><?php echo $rows['telefono']?></td>
                     <td><?php echo $rows['correo']?></td>
-                    <td><a href="modify_proveedor.php?usr=<?php echo $rows['codproveedor'] ?>"><input class="btn-modificar" type="button" value="Modificar"></a></td>
-                    <td><input class="btn-eliminar" type="button" value="Eliminar" onclick="DeleteProvider()"></td>
+                    <td><a href="modify_proveedor.php?usr=<?php echo $rows['codproveedor'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></a></td>
+                    <td><a href="#" onclick="DeleteProvider()"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
                     
                 </tr>
 

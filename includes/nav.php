@@ -20,8 +20,7 @@ if($_SESSION['rol'] == 'Vendedor'){
         <nav class="navigation-accesos" >
             <ul>
                 <li><a href="panel_principal.php">INICIO</a></li>
-                <li><a href="ventas.php">VENTAS</a></li>
-                <li><a href="compras.php">COMPRAS</a></li>
+                <li><a href="Nueva_venta.php">VENTAS</a></li>
                 <li><a href="clientes.php">CLIENTES</a></li>
                 <li><a href="proveedores.php">PROVEEDORES</a></li>
                 <li><a href="inventarios.php">INVENTARIO</a></li>
@@ -52,11 +51,9 @@ if($_SESSION['rol'] == 'Vendedor'){
             <nav class="navigation-accesos" >
                 <ul>
                     <li><a href="panel_principal.php">INICIO</a></li>
-                    <li><a href="ventas.php">VENTAS</a></li>
-                    <li><a href="compras.php">COMPRAS</a></li>
+                    <li><a href="Nueva_venta.php">VENTAS</a></li>
                     <li><a href="clientes.php">CLIENTES</a></li>
                     <li><a href="proveedores.php">PROVEEDORES</a></li>
-                    <li><a href="reportes.php">REPORTES</a></li>
                     <li><a href="inventarios.php">INVENTARIO</a></li>
                     <li><a href="usuarios.php">USUARIOS</a></li>
                     <li><a href="ayuda.php">AYUDA</a></li>

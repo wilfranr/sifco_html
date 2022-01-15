@@ -3,7 +3,7 @@
 include '../../includes/conexion.php';
 include '../../includes/header.php';
 include '../../includes/nav.php';
-echo'<script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>';
+include '../../includes/script.php';
 if ($_SESSION['rol'] == 'Administrador'){
 ?>
 
@@ -65,12 +65,8 @@ if ($_SESSION['rol'] == 'Administrador'){
                     <td><?php echo $rows['telefono']?></td>
                     <td><?php echo $rows['correo']?></td>
                     <td><?php echo $rows['tipoId']?></td>
-                    <td><a href="modify_user.php?usr=<?php echo $rows['id'] ?>"><input class="btn-modificar" type="button" value="Modificar"></a></td>
-                    <!--
-                    <td><input type="button" value="Eliminar" onclick="DeleteUser() "></td>
-            -->
-                    <td>
-                    <input class="btn-eliminar" type="clientesbutton" value="Eliminar" onclick="DeleteUser()"></td>
+                    <td><a href="modify_user.php?usr=<?php echo $rows['id'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></i></a></td>
+                    <td><a href="#" onclick="DeleteUser()"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a>
             
                     
                 </tr>

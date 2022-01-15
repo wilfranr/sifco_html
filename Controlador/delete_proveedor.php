@@ -8,7 +8,6 @@
         mysqli_close($conexion);
     }
     echo '<script>';
-            echo 'alert("Proveedor Eliminado");';
             echo 'window.location.href= "../Vista/html/proveedores.php"';
     echo '</script>';
 
