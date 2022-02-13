@@ -55,7 +55,7 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                 $total_paginas = ceil($total_registro / $por_pagina);
 
                 $query = mysqli_query($conexion, "SELECT p.codproducto, p.nombre, p.descripcion, p.cantidad, p.costo, p.precio, p.fechaVencimiento, pr.proveedor, p.foto FROM producto p INNER JOIN proveedor pr ON p.proveedor = pr.codproveedor WHERE p.estatus = 1 ORDER BY codproducto LIMIT $desde, $por_pagina");
-                // $result = $conexion->query($sentence) or die("Error al consultar: " . mysqli_error($conexion));
+
                 mysqli_close($conexion);
 
                 $result = mysqli_num_rows($query);
@@ -72,8 +72,8 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                             <td><?php echo $data['codproducto'] ?></td>
                             <td><?php echo $data['nombre'] ?></td>
                             <td><?php echo $data['descripcion'] ?></td>
-                            <td><?php echo $data['cantidad'] ?></td>
-                            <td><?php echo $data['costo'] ?></td>
+                            <td class="celCantidad"><?php echo $data['cantidad'] ?></td>
+                            <td class="celCosto"><?php echo $data['costo'] ?></td>
                             <td><?php echo $data['precio'] ?></td>
                             <td><?php echo $data['fechaVencimiento'] ?></td>
                             <td><?php echo $data['proveedor'] ?></td>
@@ -105,10 +105,10 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cerrar</button>
                                                 </form>
                                             </div>
-                                            
+
                                             <div class="modal-footer">
-                                            <div class="alert alert-success alert_add_product">
-                                            </div>
+                                                <div class="alert alert-success alert_add_product">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -117,7 +117,8 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
         </div>
         </td>
 
-        <!-- <a class="add_product" href="#" product="<?php echo $data['codproducto']; ?>"><i class="bi bi-plus-square-fill" style="font-size: 2rem; color: cornflowerblue;"></i></a> -->
+
+
         <td><a href="modify_product.php?usr=<?php echo $data['codproducto'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></i></a></td>
         <td><a href="../../Controlador/delete_product.php?usr=<?php echo $data['codproducto'] ?>"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
 
@@ -167,37 +168,6 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
 
 <a href="new_product2.php"><input class="btn-crear" type="button" value="Agregar Producto"></a>
 </div>
-<!-- Modal para agregar producto -->
-<!-- <div class="modal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Agregar Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="post" name="form_add_product" id="form_add_product">
-                    <h2 class="nameProducto">Panela</h2>
-                    <input type="number" name="cantidad" id="txtCantidad" placeholder="Cantidad del Producto" required><br><br>
-                    <input type="text" name="precio" id="txtPrecio" placeholder="Precio del Producto" required><br>
-                    <input type="hidden" name="producto_id" id="prducto_id" required><br>
-                    <input type="hidden" name="action" value="addProduct" required>
-                </form>
-            </div>
-            <div class="alert alert-success">
-                <p>Alerta de acción</p>
-            </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Agregar</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-
 
     </body>
 

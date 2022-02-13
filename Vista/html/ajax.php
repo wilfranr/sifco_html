@@ -43,6 +43,7 @@ if (!empty($_POST)) {
 
                 if ($result_pro > 0) {
                     $data = mysqli_fetch_assoc($query_upd);
+                    $data['producto_id']=$producto_id;
                     echo json_encode($data, JSON_UNESCAPED_UNICODE);
                     exit;
                 }

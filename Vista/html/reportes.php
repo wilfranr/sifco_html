@@ -2,6 +2,7 @@
     include '../../includes/header.php';
     include '../../includes/conexion.php';
     include '../../includes/nav.php';
+    if ($_SESSION['rol'] == 'Administrador') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -169,5 +170,13 @@
 <br><br>
 <br>
 <br>
-<?php include '../../includes/footer.php' ?>
+<?php include '../../includes/footer.php' ;
+}else{
+    echo '<script type="text/javascript" src="../js/functions.js"></script>';
+    echo '<script>
+
+            UserNoAccess()
+        </script>';
+}
+?>
 </html>

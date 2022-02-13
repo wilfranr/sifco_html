@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <footer>
-        Derecho Reservados &copy; 2021 <br>
+        Derecho Reservados &copy; 2022 <br>
         Elaborado por: <br>
         Yoseth Rivera, Lorena Lopez <br>
         E-mail: wilfranr@misena.edu.co <br>

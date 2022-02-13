@@ -38,8 +38,6 @@ if($_SESSION['rol'] == 'Vendedor'){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1.0">
-        <link rel="stylesheet" href="estilos.css">
-        <link rel="stylesheet" href="font.css">
         
     </head>
         

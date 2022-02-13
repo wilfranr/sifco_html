@@ -81,8 +81,7 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
 
                         ?>
                         <select name="proveedor" id="proveedor" class="form-select">
-                            
-                            
+                                
                             <?php
 
 if ($result_proveedor > 0) {
@@ -95,7 +94,7 @@ if ($result_proveedor > 0) {
                                 }
                             } ?>
                         </select><br>
-                        <a href="new_proveedor.php" target="blank">
+                        <a href="new_proveedor.php" target="_blank">
                             <button type="button" class="btn btn-primary">Nuevo Proveedor</button>
                         </a><br>
                         <label for="nombre" class="form-label mt-3">Nombre</label>
@@ -121,7 +120,7 @@ if ($result_proveedor > 0) {
                             <label for="foto">Foto</label>
                             <div class="prevPhoto">
                                 <span class="delPhoto notBlock">X</span>
-                                <label for="foto"></label>
+                                <label for="foto" class="photo-square"></label>
                             </div>
                             <div class="upimg">
                                 <input type="file" name="foto" id="foto">

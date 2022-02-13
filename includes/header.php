@@ -1,22 +1,20 @@
-<!DOCTYPE html>
 <?php
-include 'script.php';
+
 include 'conexion.php';
 
 session_start();
 if (empty($_SESSION['active'])) {
-    echo '<script type="text/javascript" src="../../Vista/js/functions.js"></script>';
-    echo '<script>
-            UserNoAccess()
-        </script>';
+    echo'<script>window.location.href="../html/page_blank.php";</script>';
 }
-
 $id = $_SESSION['id'];
 $sentence = "SELECT nombre, rol, codUsuario FROM usuario WHERE id = '" . $id . "' ";
 $result = $conexion->query($sentence);
 $row = $result->fetch_assoc();
 $usuario_id = $row['codUsuario'];
+
 ?>
+
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -55,7 +53,9 @@ $usuario_id = $row['codUsuario'];
 
 
         </div>
+        
     </nav>
+    
 </body>
 
 </html>

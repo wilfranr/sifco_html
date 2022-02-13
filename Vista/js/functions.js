@@ -36,7 +36,12 @@ $(document).ready(function () {
         $(".delPhoto").addClass('notBlock');
         $("#img").remove();
 
+        if ($('#foto_actual') && $('#foto_remove')) {
+            $('#foto_remove').val('img_producto.png');
+        }
+
     });
+
 
     //Modal form add product
     $('.add_product').click(function (e) {
@@ -110,6 +115,7 @@ $(document).ready(function () {
     })
 
 });
+
 //Enviar datos mediante Modal
 function sendDataProduct() {
     $('.alert_add_product').html('');
@@ -121,7 +127,17 @@ function sendDataProduct() {
         async: true,
 
         success: function (response) {
-            console.log(response);
+            if (response== 'error') {
+                $('.alert_add_product').html('<p style="color: red;">Error al agregar el producto.</p>');
+            }else{
+                var info = JSON.parse(response);
+                $('.fila'+info.producto_id+' .celCosto').html(info.nuevo_precio);
+                $('.fila'+info.producto_id+' .celCantidad').html(info.nueva_existencia);
+                $('#txtCantidad').val('')
+                $('#txtPrecio').val('')
+                $('.alert_add_product').html('<p>Producto Agregado.</p>');
+                console.log(response);
+            }
         },
         error: function (error) {
             console.log(error)
@@ -138,6 +154,10 @@ function closeModal() {
     // $('.modal').fadeOut();
 
 }
+//Alerta de producto agregado
+// function productoAgregado() {
+//     swal.fire('Prodcuto Agregado')
+// }
 //Alerta Usuario o Password Inválidos
 function WrongPassword() {
     swal.fire({
@@ -246,11 +266,9 @@ function ProviderModify() {
 function DeleteUser() {
     $(".tabla-usuarios").click(function () {
         var id = $(this).find("td:eq(0)").text();
-
-
-
+        console.log(id);
         Swal.fire({
-            title: 'Deseas eliminar?',
+            title: 'Deseas eliminar usuario?',
             text: "Esta accion no se puede deshacer!",
             icon: 'warning',
             showCancelButton: true,
@@ -264,6 +282,7 @@ function DeleteUser() {
                     'El registro ha sido eliminado!',
                     'success'
                 ).then(function () {
+                    
                     window.location = "../../Controlador/delete_user.php?usr=" + id;
                 })
             } else {
@@ -307,12 +326,13 @@ function DeleteClient() {
 function DeleteProvider() {
     $(".tabla-usuarios").click(function () {
         var id = $(this).find("td:eq(0)").text();
+        console.log(id);
 
         Swal.fire({
             title: 'Deseas eliminar?',
             text: "Esta accion no se puede deshacer!",
             icon: 'warning',
-            showCancelButton: true,
+            showCancelButton: 'Cancelar',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminar!'
@@ -331,6 +351,36 @@ function DeleteProvider() {
         });
     });
 }
+//Eliminar producto
+function DeleteProduct() {
+    $(".tabla-usuarios").click(function () {
+        var id = $(this).find("td:eq(0)").text();
+
+        Swal.fire({
+            title: 'Deseas eliminar producto?',
+            text: "Esta accion no se puede deshacer!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Eliminado!',
+                    'El registro ha sido eliminado!',
+                    'success'
+                ).then(function () {
+                    console.log(id)
+                    window.location = "../../Controlador/delete_product.php?usr=" + id;
+                })
+            } else {
+                window.location.href = "../html/inventarios.php";
+            }
+        });
+    });
+}
+
 //Alerta password diferentes
 function DiferentPassword() {
     swal.fire({
@@ -352,10 +402,10 @@ function UserPasswordExists() {
     });
 }
 //usuario no tiene acceso
+
 function UserNoAccess() {
     swal.fire({
-        title: "Error",
-        text: "Acceso Negado!!",
+        title: "Acceso Negado!!",
         text: "Inicie sesión",
         type: "error",
         icon: "error",

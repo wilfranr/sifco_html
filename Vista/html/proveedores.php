@@ -1,10 +1,8 @@
 <?php
-    
     include '../../includes/conexion.php';
     include '../../includes/header.php';
     include '../../includes/nav.php';
     include '../../includes/script.php';
-
     if ($_SESSION['rol'] == 'Administrador'||$_SESSION['rol']=='Vendedor'){
 ?>
 <!DOCTYPE html>
@@ -55,7 +53,7 @@
             {
         ?>
                 <tr>
-                    <td><?php echo $rows['codproveedor']?></td>
+                    <td id="id"><?php echo $rows['codproveedor']?></td>
                     <td><?php echo $rows['id']?></td>
                     <td><?php echo $rows['tipoIdProveedor']?></td>
                     <td><?php echo $rows['proveedor']?></td>
