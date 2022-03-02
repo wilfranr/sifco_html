@@ -2,6 +2,7 @@
 include '../../includes/conexion.php';
 include '../../includes/header.php';
 include '../../includes/nav.php';
+include '../../includes/script.php';
 
 ?>
 

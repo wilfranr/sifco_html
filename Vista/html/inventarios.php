@@ -119,7 +119,7 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
 
 
 
-        <td><a href="modify_product.php?usr=<?php echo $data['codproducto'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></i></a></td>
+        <td><a href="edit_product.php?usr=<?php echo $data['codproducto'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></i></a></td>
         <td><a href="../../Controlador/delete_product.php?usr=<?php echo $data['codproducto'] ?>"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
 
         </tr>
@@ -127,6 +127,7 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
 
 <?php
                     }
+                    
                 }
 ?>
 

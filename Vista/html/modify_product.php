@@ -75,16 +75,26 @@ include '../../includes/conexion.php'
     
 
     <!--modificar producto-->
+    <?php 
+        $codproducto = $consult[0];
+        $nombre = $consult[1];
+        $descripcion = $consult[2];
+        $costo = $consult[4];
+        $precio = $consult[5];
+        $fechaVence = $consult[6];
+        $proveedor = $consult[3];
+    
+    ?>
     
     <div class="agregar-usuario" id="modificar-usuario">
-        <form action="../../Controlador/edit_user.php" class="inventario" method="POST" enctype="multipart/form-data">
+        <form action="" class="inventario" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $data_producto['codproducto']; ?>">
             <input type="hidden" name="foto_actual" id="foto_actual" value="<?php echo $data_producto['foto']; ?>">
             <input type="hidden" name="foto_remove" id="foto_remove" value="<?php echo $data_producto['foto']; ?>">
             
             <h3>EDITAR PRODCUTO</h3><br>
             <label for="consulta-codigo">NOMBRE</label>
-            <input class="control-usuario" name="name" value="<?php echo $consult[1] ?>" type="text" required><br><br>
+            <input class="control-usuario" name="name" value="<?php echo $nombre ?>" type="text" required><br><br>
             <!-- <label for="consulta-codigo">DESCRIPCIÓN</label>
             <input class="control-usuario mb-2" type="text" value="<?php echo $consult[2] ?>"><br> -->
 
@@ -94,11 +104,15 @@ include '../../includes/conexion.php'
             $query_proveedor = mysqli_query($conexion, "SELECT * FROM proveedor");
             $result_proveedor = mysqli_num_rows($query_proveedor);
 
+            $query_update = mysqli_query($conexion, "UPDATE producto SET(nombre = $nombre, descripcion = $descripcion, proveedor = $proveedor, costo = $costo, precio = $precio, fechaVencimiento = $fechaVence, foto = $foto)
+            WHERE codproducto = $codproducto ");
+
 
             ?>
             <select name="proveedor" id="tipo-id" class="notItemOne">
                 <option value="<?php echo $data_producto['codproveedor']; ?>"><?php echo $data_producto['proveedor']; ?></option>
                 <?php
+                
 
 
                 if ($result_proveedor > 0) {
@@ -106,8 +120,8 @@ include '../../includes/conexion.php'
                 ?>
 
                         <option value="<?php echo $proveedor['codproveedor']; ?>"><?php echo $proveedor['proveedor']; ?></option>
-
-                <?php
+                        
+                        <?php
                     }
                 } ?>
 
@@ -115,13 +129,13 @@ include '../../includes/conexion.php'
             </select><br><br>
 
             <label for="id">DESCRIPCIÓN</label>
-            <input class="control-usuario" name="id" value="<?php echo $consult[2] ?>" type="text" required readonly><br><br>
+            <input class="control-usuario" name="id" value="<?php echo $descripcion ?>" type="text" required readonly><br><br>
             <label for="consulta-palabra">COSTO</label>
-            <input class="control-usuario" name="dir" value="<?php echo $consult[4] ?>" type="text"><br><br>
+            <input class="control-usuario" name="dir" value="<?php echo $costo ?>" type="text"><br><br>
             <label for="consulta-palabra">PRECIO</label>
-            <input class="control-usuario" name="tel" value="<?php echo $consult[5] ?>" type="text"><br><br>
+            <input class="control-usuario" name="tel" value="<?php echo $precio ?>" type="text"><br><br>
             <label for="consulta-palabra">FECHA VENCIMIENTO</label>
-            <input class="control-usuario" name="email" value="<?php echo $consult[6] ?>" type="date"><br><br>
+            <input class="control-usuario" name="email" value="<?php echo $fechaVence ?>" type="date"><br><br>
             <div class="photo">
                 <label for="foto">Foto</label>
                 <div class="prevPhoto">

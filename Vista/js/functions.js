@@ -253,6 +253,7 @@ function UserDelete() {
     });
 }
 
+//modificar proveedor
 function ProviderModify() {
     swal.fire({
         title: "Éxito",
@@ -263,6 +264,7 @@ function ProviderModify() {
         window.location = "../Vista/html/proveedores.php";
     });
 }
+//Eliminar usuario
 function DeleteUser() {
     $(".tabla-usuarios").click(function () {
         var id = $(this).find("td:eq(0)").text();
@@ -426,15 +428,6 @@ function PasswordEdit() {
     });
 }
 
-function ProductExists() {
-    swal.fire({
-        title: "Atención",
-        text: "Va a editar un producto existente!!",
-        type: "warning",
-        icon: "warning",
-    });
-}
-
 function prueba() {
     swal.fire({
         title: "Prueba",
@@ -450,6 +443,17 @@ function addedProduct() {
         text: "Producto agregado!",
         type: "success",
         icon: "success",
+    });
+}
+
+function editedProduct() {
+    swal.fire({
+        title: "Exito!!!",
+        text: "Producto editado!",
+        type: "success",
+        icon: "success",
+    }).then(function () {
+        window.location = "../html/inventarios.php";
     });
 }
 
