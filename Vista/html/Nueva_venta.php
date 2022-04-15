@@ -59,7 +59,7 @@ include "../../includes/conexion.php"
                 </form>
             </div>
         </div>
-        <div class="container nueva_venta">
+        <div class="container nueva_venta mb-5">
             <p>Datos de Facturación</p>
             <p><?php
                 echo utf8_decode($row['rol']);
@@ -67,6 +67,71 @@ include "../../includes/conexion.php"
                 echo utf8_decode($row['nombre']);
                 ?></p>
         </div>
+        <div class="container">
+        
+
+            <table class="tabla-usuarios mt-5 text-center">
+                <thead>
+                    <tr>
+                        <th>Buscar Producto</th>
+                    </tr>
+                    <tr>
+                        <th width="50px">Código</th>
+                        <th width="100px">Nombre</th>
+                        <th colspan="2" width="200px">Descripción</th>
+                        <th width="50px">Cantidad</th>
+                        <th>Valor Uni.</th>
+                        <th>Valor Total</th>
+                        <th>Acción</th>
+                    </tr>
+
+
+                    <tr>
+                        <td><input id="txt_cod_producto" type="number" name="txt_cod_product"></td>
+                        <td><input id="input-number" type="text"></td>
+                        <td colspan="2">panela 200gr</td>
+                        <td><input id="input-number" type="number"></td>
+                        <td>2000</td>
+                        <td>10000</td>
+                        <td><button type="button" class="btn btn-primary add_product" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="bi bi-plus-lg"></i>
+                            </button></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Detalles de Factura</th>
+                    </tr>
+                    <tr class="tr-detalle">
+                        
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th colspan="2">Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Valor Uni.</th>
+                        <th>Valor Total</th>
+                        <th>Acción</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>panela</td>
+                        <td colspan="2">panela 200gr</td>
+                        <td>20</td>
+                        <td>2000</td>
+                        <td>10000</td>
+                        <td><a href="#"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a>
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
 
     </section>
     <?php include "../../includes/footer.php" ?>

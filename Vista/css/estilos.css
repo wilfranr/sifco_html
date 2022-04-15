@@ -968,7 +968,10 @@ tr.par {
     color: black;
     float: right;
 }
-
+#input-number {
+    text-align: right;
+    width: 100%;
+}
 .agregar-usuario {
     width: 30%;
     font-size: 1.2rem;
@@ -1164,4 +1167,9 @@ footer {
 
 .notItemOne option:first-child{
     display: none;
+}
+
+.tr-detalle {
+    background-color: #2471A3;
+    color: #b6c4d1;
 }
