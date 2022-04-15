@@ -19,6 +19,7 @@ function Consult($user, $pass)
             $rol = $rows['rol'];
             $id = $rows['id'];
             $user = $rows['usuario'];
+            $usuario_id = $rows['codUsuario'];
         }
 
         session_start();
@@ -26,6 +27,7 @@ function Consult($user, $pass)
         $_SESSION['rol'] = $rol;
         $_SESSION['id'] = $id;
         $_SESSION['usuario'] = $user;
+        $_SESSION['codUsuario'] = $usuario_id;
         header('Location: ../Vista/html/panel_principal.php');
     } else {
         

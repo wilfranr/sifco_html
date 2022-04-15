@@ -14,27 +14,30 @@
 </head>
 
 <!--redes sociales y logo-->
-<header class="header1">
-    <div class="container">
+<nav class="navbar navbar-dark bg-dark fixed-top">
+        
+        <div class="container-fluid">
+            <a class="navbar-brand"><img src="./Vista/img/LOGO_gris.png" alt="logo" width="130px"></a>
+            
+            
+            <div class="redes">
+                <ul>
+                    <li>
+                        <a href="https://es-es.facebook.com/" class="icon icon-facebook2" target="blank"></a>
+                        <a href="https://twitter.com/" class="icon icon-twitter" target="blank"></a>
+                        <a href="https://www.youtube.com/" class="icon icon-youtube" target="blank"></a>
+                        <a href="https://www.whatsapp.com" class="icon icon-whatsapp" target="blank"></a>
 
-        <a class="logo" href="index.php"><img src="Vista/img/LOGO_gris.png" alt="logo" width="130px"></a>
+                    </li>
+                </ul>
+            </div>
+            
 
-        <nav class="redes">
-            <ul>
-                <li>
-                    <a href="https://es-es.facebook.com/" class="icon icon-facebook2" target="blank"></a>
-                    <a href="https://twitter.com/" class="icon icon-twitter" target="blank"></a>
-                    <a href="https://www.youtube.com/" class="icon icon-youtube" target="blank"></a>
-                    <a href="https://www.whatsapp.com" class="icon icon-whatsapp" target="blank"></a>
-
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+        </div>
+    </nav>
 
 <body>
-    
+
     <!--Formulario de inicio de sesión-->
     <div class="inicio_sesion">
 
@@ -59,6 +62,8 @@
 </body>
 <!--pie de página-->
 
-<?php include 'includes/footer.php' ?>
+<?php include 'includes/footer.php';
+    include 'includes/script.php'
+?>
 
 </html>
