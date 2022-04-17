@@ -1173,3 +1173,10 @@ footer {
     background-color: #2471A3;
     color: #b6c4d1;
 }
+
+.link_add{
+    display: none;
+}
+#txt_cant_producto{
+    width: 70px;
+}

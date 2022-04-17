@@ -79,7 +79,8 @@ include "../../includes/conexion.php"
                         <th width="50px">Código</th>
                         <th width="100px">Nombre</th>
                         <th colspan="2" width="200px">Descripción</th>
-                        <th width="50px">Cantidad</th>
+                        <th width="50px">Existencia</th>
+                        <th width="10px">Cantidad</th>
                         <th>Valor Uni.</th>
                         <th>Valor Total</th>
                         <th>Acción</th>
@@ -88,12 +89,13 @@ include "../../includes/conexion.php"
 
                     <tr>
                         <td><input id="txt_cod_producto" type="number" name="txt_cod_product"></td>
-                        <td><input id="input-number" type="text"></td>
-                        <td colspan="2">panela 200gr</td>
-                        <td><input id="input-number" type="number"></td>
-                        <td>2000</td>
-                        <td>10000</td>
-                        <td><button type="button" class="btn btn-primary add_product" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <td id="txt_nombre"></td>
+                        <td colspan="2" id="txt_descripcion"></td>
+                        <td id="txt_cantidad"></td>
+                        <td width="10px"><input type="number" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled></td>
+                        <td id="txt_precio"></td>
+                        <td id="txt_precio_total"></td>
+                        <td><button type="button" id="add_product_venta" class="btn btn-primary link_add add_product_venta">
                                 <i class="bi bi-plus-lg"></i>
                             </button></td>
                     </tr>
