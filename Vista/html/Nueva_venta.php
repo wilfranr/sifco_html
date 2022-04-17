@@ -92,7 +92,7 @@ include "../../includes/conexion.php"
                         <td id="txt_nombre"></td>
                         <td colspan="2" id="txt_descripcion"></td>
                         <td id="txt_cantidad"></td>
-                        <td width="10px"><input type="number" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled></td>
+                        <td width="10px"><input type="text" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled></td>
                         <td id="txt_precio"></td>
                         <td id="txt_precio_total"></td>
                         <td><button type="button" id="add_product_venta" class="btn btn-primary link_add add_product_venta">
