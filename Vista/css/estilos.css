@@ -29,6 +29,7 @@ body {
     display: none;
 }
 
+
 /* .container {
     display: flex;
     justify-content: space-between;
@@ -159,13 +160,11 @@ body {
         font-size: 1em;
         color: #6c757d;
     }
-
     .card-reportes h4,
     .card-usuarios h4 {
         font-size: 1em;
         color: #6c757d;
     }
-
     .container-card {
         margin: 0 auto;
         display: flex;
@@ -226,7 +225,6 @@ body {
         background: #6c757d;
         padding: 5px;
     }
-
     .container-accesos .navigation-accesos ul {
         background-color: black;
         display: flex;
@@ -236,21 +234,17 @@ body {
         position: fixed;
         margin: 0;
     }
-
     .navigation-accesos a {
         font: 1em verdana, geneva, sans-serif;
     }
-
     .menu_bar {
         display: block;
     }
-
     .menu_bar .bt-menu {
         color: #b6c4d1;
         text-decoration: none;
         font-weight: bold;
     }
-
     #cerrarMenu {
         display: block;
     }
@@ -968,10 +962,12 @@ tr.par {
     color: black;
     float: right;
 }
+
 #input-number {
     text-align: right;
     width: 100%;
 }
+
 .agregar-usuario {
     width: 30%;
     font-size: 1.2rem;
@@ -1117,7 +1113,8 @@ footer {
     height: 100%;
 }
 
-.upimg, .notBlock {
+.upimg,
+.notBlock {
     display: none !important;
 }
 
@@ -1148,7 +1145,8 @@ footer {
     top: -10px;
     z-index: 10;
 }
-.photo-square{
+
+.photo-square {
     border: #03052b solid 3px;
 }
 
@@ -1165,7 +1163,7 @@ footer {
     text-align: center;
 }
 
-.notItemOne option:first-child{
+.notItemOne option:first-child {
     display: none;
 }
 
@@ -1174,9 +1172,14 @@ footer {
     color: #b6c4d1;
 }
 
-.link_add{
+.link_add {
     display: none;
 }
-#txt_cant_producto{
+
+#txt_cant_producto {
     width: 70px;
+}
+
+#txt_cod_producto {
+    width: 120px;
 }

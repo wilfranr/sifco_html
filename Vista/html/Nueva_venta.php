@@ -73,9 +73,9 @@ include "../../includes/conexion.php"
             <table class="tabla-usuarios mt-5 text-center">
                 <thead>
                     <tr>
-                        <th>Buscar Producto</th>
+                        <th colspan="9"><h2>Buscar Producto</h2></th>
                     </tr>
-                    <tr>
+                    <tr class="tr-detalle">
                         <th width="50px">Código</th>
                         <th width="100px">Nombre</th>
                         <th colspan="2" width="200px">Descripción</th>
@@ -102,13 +102,13 @@ include "../../includes/conexion.php"
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Detalles de Factura</th>
+                        <th colspan="9"><h2>Detalles de Factura</h2></th>
                     </tr>
                     <tr class="tr-detalle">
                         
                         <th>Código</th>
                         <th>Nombre</th>
-                        <th colspan="2">Descripción</th>
+                        <th colspan="3">Descripción</th>
                         <th>Cantidad</th>
                         <th>Valor Uni.</th>
                         <th>Valor Total</th>
@@ -117,7 +117,7 @@ include "../../includes/conexion.php"
                     <tr>
                         <td>1</td>
                         <td>panela</td>
-                        <td colspan="2">panela 200gr</td>
+                        <td colspan="3">panela 200gr</td>
                         <td>20</td>
                         <td>2000</td>
                         <td>10000</td>
