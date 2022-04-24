@@ -77,5 +77,30 @@ if (!empty($_POST)) {
         }
         exit;
     }
+
+    //Agregar producto al detalle temporal
+    if ($_POST['action'] == 'addproductdetalle') {
+        if (empty($_POST['producto']) || empty($_POST['cantidad'])) {
+            echo 'erro';
+        }else{
+            $codproducto = $_POST['prodcuto'];
+            $cantidad = $_POST['cantidad'];
+            $token = md5($_SESSION['id']);
+            $iva = 16;
+
+            $query_detalle_temp = mysqli_query($conexion,"CALL add_detalle_temp($codproducto,$cantidad,'$token')");
+            $result = mysqli_num_rows($query_detalle_temp);
+
+            $detalleTabla = '';
+            $subtotal = 0;
+            $total = 0;
+            $arrayData = array();
+
+            while ($data = mysqli_fetch_assoc($query_detalle_temp)) {
+                $precio_total = round($data['cantidad'] * $data['precio_venta']);
+            }
+
+        }
+        }
 }
 exit;
