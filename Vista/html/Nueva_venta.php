@@ -71,7 +71,7 @@ include "../../includes/conexion.php";
         <div class="container">
         
 
-            <table class="tabla-usuarios mt-5 text-center">
+            <table class="tabla-usuarios-factura mt-5 text-center">
                 <thead>
                     <tr>
                         <th colspan="9"><h2>Buscar Producto</h2></th>
@@ -101,7 +101,7 @@ include "../../includes/conexion.php";
                             </button></td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="detalle_venta">
                     <tr>
                         <th colspan="9"><h2>Detalles de Factura</h2></th>
                     </tr>
@@ -115,23 +115,23 @@ include "../../includes/conexion.php";
                         <th>Valor Total</th>
                         <th>Acción</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>panela</td>
-                        <td colspan="3">panela 200gr</td>
-                        <td>20</td>
-                        <td>2000</td>
-                        <td>10000</td>
-                        <td><a href="#"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a>
-
-                        </td>
-                    </tr>
-
-
-                    <tr>
-
-                    </tr>
+                    <!-- contenido desde ajax -->
+                   
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" >Sub Total</td>
+                        <td class="text-right">10000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" >IVA 19%</td>
+                        <td class="text-right">10000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" >TOTAL</td>
+                        <td class="text-right">10000</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
 

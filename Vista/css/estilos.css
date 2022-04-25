@@ -328,11 +328,28 @@ body {
     border: solid #2471A3 1px;
 }
 
+.tabla-usuarios-factura {
+    width: 100%;
+    height: 100%;
+    color: #2471A3;
+    border: solid #2471A3 1px;
+}
+
 .tabla-usuarios tr th {
     border: solid #2471A3 1px;
 }
 
+.tabla-usuarios-factura tr th {
+    border: solid #2471A3 1px;
+}
+
 .tabla-usuarios td {
+    border: solid #2471A3 1px;
+    height: 20px;
+    padding: 5px;
+}
+
+.tabla-usuarios-factura td {
     border: solid #2471A3 1px;
     height: 20px;
     padding: 5px;

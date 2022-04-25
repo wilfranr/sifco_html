@@ -92,13 +92,34 @@ if (!empty($_POST)) {
             $result = mysqli_num_rows($query_detalle_temp);
 
             $detalleTabla = '';
-            $subtotal = 0;
+            $sub_total = 0;
             $total = 0;
             $arrayData = array();
-
+            
             while ($data = mysqli_fetch_assoc($query_detalle_temp)) {
-                $precio_total = round($data['cantidad'] * $data['precio_venta']);
+                $precio_total = round($data['cantidad'] * $data['precio_venta'], 2);
+                $sub_total = round($sub_total + $precio_total, 2);
+                $total = round($total + $precio_total, 2);
+
+                $detalleTabla = '
+                    <tr>
+                        <td>'.$data['codproducto'].'</td>
+                        <td>'.$data['nombre'].'</td>
+                        <td colspan="3">'.$data['descripcion'].'</td>
+                        <td>'.$data['cantidad'].'</td>
+                        <td>'.$data['precio_venta'].'</td>
+                        <td>'.$precio_total.'</td>
+                        <td><a href="#" onclick="event.preventDefault();del_product_detalle('.$data['codproducto'].');"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
+                    </tr>
+                ';
             }
+            $impuesto = round($sub_total * ($iva / 100), 2);
+            $total_sin_iva = round($sub_total - $impuesto, 2);
+            $total = round($total_sin_iva + $impuesto, 2);
+
+            $detalleTotales = '
+                
+            ';
 
         }
         }
