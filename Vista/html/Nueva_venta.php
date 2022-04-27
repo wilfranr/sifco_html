@@ -61,7 +61,7 @@ include "../../includes/conexion.php";
             </div>
         </div>
         <div class="container nueva_venta mb-5">
-            <p>Datos de Facturación</p>
+            <p class="fw-bold">Datos de Facturación</p>
             <p><?php
                 echo utf8_decode($row['rol']);
                 echo ": ";
@@ -89,7 +89,7 @@ include "../../includes/conexion.php";
 
 
                     <tr>
-                        <td><input id="txt_cod_producto" type="number" name="txt_cod_product"></td>
+                        <td><input id="txt_cod_producto" type="number" name="txt_cod_producto"></td>
                         <td id="txt_nombre"></td>
                         <td colspan="2" id="txt_descripcion"></td>
                         <td id="txt_cantidad"></td>
@@ -118,19 +118,8 @@ include "../../includes/conexion.php";
                     <!-- contenido desde ajax -->
                    
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5" >Sub Total</td>
-                        <td class="text-right">10000</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" >IVA 19%</td>
-                        <td class="text-right">10000</td>
-                    </tr>
-                    <tr>
-                        <td colspan="8" >TOTAL</td>
-                        <td class="text-right">10000</td>
-                    </tr>
+                <tfoot id="detalle_totales">
+                    <!-- Contenido viene desde ajax -->
                 </tfoot>
             </table>
         </div>

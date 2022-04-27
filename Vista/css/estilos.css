@@ -353,6 +353,7 @@ body {
     border: solid #2471A3 1px;
     height: 20px;
     padding: 5px;
+    font-weight: bold;
 }
 
 .btn-modificar {
