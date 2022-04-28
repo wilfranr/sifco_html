@@ -8,7 +8,8 @@ include "../../includes/conexion.php";
 
 <head>
     <meta charset="UTF-8">
-    <?php include "../../includes/script.php";
+    <?php 
+    include "../../includes/script.php";
     include "../../includes/header.php";
     include "../../includes/nav.php";
     ?>
@@ -126,7 +127,15 @@ include "../../includes/conexion.php";
 
 
     </section>
-    <?php include "../../includes/footer.php" ?>
+    <?php include "../../includes/footer.php"?>
+
+    <!-- funcion para conservar detalle -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var usuarioid = <?php echo $_SESSION['id'];?>;
+            searchForDetalle(usuarioid);
+          });
+    </script>
 </body>
 
 </html>

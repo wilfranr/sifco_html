@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     //--------------------- SELECCIONAR FOTO PRODUCTO ---------------------
-    $("#foto").on("change", function() {
+    $("#foto").on("change", function () {
         var uploadFoto = document.getElementById("foto").value;
         var foto = document.getElementById("foto").files;
         var nav = window.URL || window.webkitURL;
@@ -31,7 +31,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.delPhoto').click(function() {
+    $('.delPhoto').click(function () {
         $('#foto').val('');
         $(".delPhoto").addClass('notBlock');
         $("#img").remove();
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 
     //Modal form add product
-    $('.add_product').click(function(e) {
+    $('.add_product').click(function (e) {
         e.preventDefault();
         var producto = $(this).attr('product');
         var action = "infoProducto";
@@ -55,7 +55,7 @@ $(document).ready(function() {
             data: { action: action, producto: producto },
             async: true,
 
-            success: function(response) {
+            success: function (response) {
                 if (response != 'error') {
                     var info = JSON.parse(response);
 
@@ -63,7 +63,7 @@ $(document).ready(function() {
                     $('.nameProducto').html(info.descripcion);
                 }
             },
-            error: function(error) {
+            error: function (error) {
                 console.log(error)
             }
 
@@ -72,7 +72,7 @@ $(document).ready(function() {
     })
 
     //función para buscar cliente en nueva venta
-    $('#nit_cliente').keyup(function(e) {
+    $('#nit_cliente').keyup(function (e) {
         e.preventDefault();
         var cl = $(this).val();
         action = 'searchCliente';
@@ -81,7 +81,7 @@ $(document).ready(function() {
             url: "ajax.php",
             async: true,
             data: { action: action, cliente: cl },
-            success: function(response) {
+            success: function (response) {
                 console.log(response)
                 if (response == 0) {
                     $('#id_cliente').val('');
@@ -108,7 +108,7 @@ $(document).ready(function() {
                     $('#btn_guardar').slideUp();
                 }
             },
-            error: function(error) {
+            error: function (error) {
 
             }
         });
@@ -116,7 +116,7 @@ $(document).ready(function() {
 
     //funcion para buscar producto
 
-    $('#txt_cod_producto').keyup(function(e) {
+    $('#txt_cod_producto').keyup(function (e) {
         e.preventDefault();
         var producto = $(this).val();
         var action = 'infoProducto';
@@ -129,7 +129,7 @@ $(document).ready(function() {
                 url: "ajax.php",
                 async: true,
                 data: { action: action, producto: producto },
-                success: function(response) {
+                success: function (response) {
                     if (response != 'error') {
                         var info = JSON.parse(response)
                         $('#txt_nombre').html(info.nombre)
@@ -162,7 +162,7 @@ $(document).ready(function() {
                     }
 
                 },
-                error: function(error) {
+                error: function (error) {
 
                 }
             });
@@ -170,7 +170,7 @@ $(document).ready(function() {
     })
 
     //validar cantidad del prodcuto
-    $('#txt_cant_producto').keyup(function(e) {
+    $('#txt_cant_producto').keyup(function (e) {
         e.preventDefault()
         var precio_total = $(this).val() * $('#txt_precio').html()
         var existencia = parseInt($('#txt_cantidad').html())
@@ -187,7 +187,7 @@ $(document).ready(function() {
     })
 
     //Agregar producto al detalle
-    $('#add_product_venta').click(function(e) {
+    $('#add_product_venta').click(function (e) {
         e.preventDefault();
         if ($('#txt_cant_producto').val() > 0) {
             var codproducto = $('#txt_cod_producto').val()
@@ -198,9 +198,9 @@ $(document).ready(function() {
                 url: 'ajax.php',
                 type: "POST",
                 async: true,
-                data: { action:action,producto:codproducto,cantidad:cantidad },
+                data: { action: action, producto: codproducto, cantidad: cantidad },
 
-                success: function(response) {
+                success: function (response) {
                     if (response != 'error') {
                         var info = JSON.parse(response)
                         $('#detalle_venta').html(info.detalle)
@@ -211,15 +211,15 @@ $(document).ready(function() {
                         $('#txt_cantidad').html('-')
                         $('#txt_cant_producto').val(0)
                         $('#txt_precio').html('0.00')
-                        $('#txt_precio_total').html('0.00') 
-                        
-                        $('#txt_cant_producto').attr('disabled','disabled')
+                        $('#txt_precio_total').html('0.00')
+
+                        $('#txt_cant_producto').attr('disabled', 'disabled')
                         $('#add_product_venta').slideUp()
-                    }else{
+                    } else {
                         console.log('no data')
                     }
                 },
-                error: function(error) {
+                error: function (error) {
 
                 }
             })
@@ -227,7 +227,44 @@ $(document).ready(function() {
         }
     })
 
-});
+});//end ready
+
+//extraer datos del detalle
+function searchForDetalle(id) {
+    var action = 'searchForDetalle';
+    var user = id;
+
+    $.ajax({
+        url: 'ajax.php',
+        type: "POST",
+        async: true,
+        data: { action:action, user:user },
+
+        success: function (response) {
+            if (response != 'error') {
+                var info = JSON.parse(response)
+                $('#detalle_venta').html(info.detalle)
+                $('#detalle_totales').html(info.totales)
+
+                $('#txt_cod_producto').val('')
+                $('#txt_descripcion').html('-')
+                $('#txt_cantidad').html('-')
+                $('#txt_cant_producto').val(0)
+                $('#txt_precio').html('0.00')
+                $('#txt_precio_total').html('0.00')
+
+                $('#txt_cant_producto').attr('disabled', 'disabled')
+                $('#add_product_venta').slideUp()
+            } else {
+                console.log('no data')
+            }
+        },
+        error: function (error) {
+
+        }
+    })
+
+}
 
 //Enviar datos mediante Modal
 function sendDataProduct() {
@@ -239,7 +276,7 @@ function sendDataProduct() {
         data: $('#form_add_product').serialize(),
         async: true,
 
-        success: function(response) {
+        success: function (response) {
             if (response == 'error') {
                 $('.alert_add_product').html('<p style="color: red;">Error al agregar el producto.</p>');
             } else {
@@ -252,7 +289,7 @@ function sendDataProduct() {
                 console.log(response);
             }
         },
-        error: function(error) {
+        error: function (error) {
             console.log(error)
         }
 
@@ -275,7 +312,7 @@ function WrongPassword() {
         text: "Usuario o Password Inválidos!",
         type: "error",
         icon: "error",
-    }).then(function() {
+    }).then(function () {
         window.location = "../index.php";
     });
 }
@@ -286,7 +323,7 @@ function ClientModify() {
         text: "Cliente Modificado!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/clientes.php";
     });
 }
@@ -297,7 +334,7 @@ function UserModify() {
         text: "Usuario Modificado!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/usuarios.php";
     });
 }
@@ -307,7 +344,7 @@ function UserCreate() {
         title: "Usuario Creado!!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/usuarios.php";
     });
 }
@@ -317,7 +354,7 @@ function ClientCreate() {
         title: "Cliente Creado!!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/clientes.php";
     });
 }
@@ -327,7 +364,7 @@ function ProviderCreate() {
         title: "Proveedor Creado!!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/proveedores.php";
     });
 }
@@ -337,7 +374,7 @@ function ProductCreate() {
         title: "Producto Agregado!!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/inventarios.php";
     });
 }
@@ -359,7 +396,7 @@ function UserDelete() {
         text: "Usuario Eliminado!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/usuarios.php";
     });
 }
@@ -371,13 +408,13 @@ function ProviderModify() {
         text: "Proveedor Modificado!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/proveedores.php";
     });
 }
 //Eliminar usuario
 function DeleteUser() {
-    $(".tabla-usuarios").click(function() {
+    $(".tabla-usuarios").click(function () {
         var id = $(this).find("td:eq(0)").text();
         console.log(id);
         Swal.fire({
@@ -394,7 +431,7 @@ function DeleteUser() {
                     'Eliminado!',
                     'El registro ha sido eliminado!',
                     'success'
-                ).then(function() {
+                ).then(function () {
 
                     window.location = "../../Controlador/delete_user.php?usr=" + id;
                 })
@@ -406,7 +443,7 @@ function DeleteUser() {
 }
 //Eliminar cliente
 function DeleteClient() {
-    $(".tabla-usuarios").click(function() {
+    $(".tabla-usuarios").click(function () {
         var id = $(this).find("td:eq(0)").text();
 
 
@@ -425,7 +462,7 @@ function DeleteClient() {
                     'Eliminado!',
                     'El registro ha sido eliminado!',
                     'success'
-                ).then(function() {
+                ).then(function () {
                     window.location = "../../Controlador/delete_cliente.php?usr=" + id;
                 })
             } else {
@@ -437,7 +474,7 @@ function DeleteClient() {
 
 //Eliminar proveedor
 function DeleteProvider() {
-    $(".tabla-usuarios").click(function() {
+    $(".tabla-usuarios").click(function () {
         var id = $(this).find("td:eq(0)").text();
         console.log(id);
 
@@ -455,7 +492,7 @@ function DeleteProvider() {
                     'Eliminado!',
                     'El registro ha sido eliminado!',
                     'success'
-                ).then(function() {
+                ).then(function () {
                     window.location = "../../Controlador/delete_proveedor.php?usr=" + id;
                 })
             } else {
@@ -466,7 +503,7 @@ function DeleteProvider() {
 }
 //Eliminar producto
 function DeleteProduct() {
-    $(".tabla-usuarios").click(function() {
+    $(".tabla-usuarios").click(function () {
         var id = $(this).find("td:eq(0)").text();
 
         Swal.fire({
@@ -483,7 +520,7 @@ function DeleteProduct() {
                     'Eliminado!',
                     'El registro ha sido eliminado!',
                     'success'
-                ).then(function() {
+                ).then(function () {
                     console.log(id)
                     window.location = "../../Controlador/delete_product.php?usr=" + id;
                 })
@@ -522,7 +559,7 @@ function UserNoAccess() {
         text: "Inicie sesión",
         type: "error",
         icon: "error",
-    }).then(function() {
+    }).then(function () {
         window.location = "../../index.php";
     });
 }
@@ -534,7 +571,7 @@ function PasswordEdit() {
         text: "Password Modificada!!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../Vista/html/usuarios.php";
     });
 }
@@ -563,7 +600,7 @@ function editedProduct() {
         text: "Producto editado!",
         type: "success",
         icon: "success",
-    }).then(function() {
+    }).then(function () {
         window.location = "../html/inventarios.php";
     });
 }
