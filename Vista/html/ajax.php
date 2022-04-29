@@ -110,7 +110,7 @@ if (!empty($_POST)) {
                         <td>' . $data['cantidad'] . '</td>
                         <td>' . $data['precio_venta'] . '</td>
                         <td>' . $precio_total . '</td>
-                        <td><a href="#" onclick="event.preventDefault();del_product_detalle(' . $data['codproducto'] . ');"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
+                        <td><a href="#" onclick="event.preventDefault();del_product_detalle(' . $data['correlativo'] . ');"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
                     </tr>
                 ';
                 }
@@ -126,10 +126,81 @@ if (!empty($_POST)) {
                 <tr>
                     <td colspan="7" >IVA.' . $iva . '%</td>
                     <td class="text-right">' . $impuesto . '</td>
+                    <td><button type="button" class="btn btn-danger">Anular</button></td>
                 </tr>
                 <tr>
                     <td colspan="7" >TOTAL</td>
                     <td>' . $total . '</td>
+                    <td><button type="button" class="btn btn-primary">Pagar</button></td>  
+                </tr>
+            ';
+                $arrayData['detalle'] = $detalleTabla;
+                $arrayData['totales'] = $detalleTotales;
+
+                echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+            } else {
+                echo 'error';
+            }
+            mysqli_close($conexion);
+        }
+        exit;
+    }
+    //eliminar producto del detelle temporal
+    if ($_POST['action'] == 'delProductoDetalle') {
+        if (empty($_POST['id_detalle'])) {
+            echo 'error';
+        } else {
+            
+            $id_detalle = $_POST['id_detalle'];
+            $token = md5($_SESSION['id']);
+
+            //query para llamar el procedimiento almacenado
+            $query_detalle_temp = mysqli_query($conexion, "CALL del_detalle_temp($id_detalle,'$token')");
+            $result = mysqli_num_rows($query_detalle_temp);
+
+            $detalleTabla = '';
+            $sub_total = 0;
+            $total = 0;
+            $iva = 19;
+            $arrayData = array();
+
+            if ($result > 0) {
+
+                while ($data = mysqli_fetch_assoc($query_detalle_temp)) {
+                    $precio_total = round($data['cantidad'] * $data['precio_venta'], 2);
+                    $sub_total = round($sub_total + $precio_total, 2);
+                    $total = round($total + $precio_total, 2);
+
+                    $detalleTabla .= '
+                    <tr>
+                        <td>'.$data['codproducto'].'</td>
+                        <td>' . $data['nombre'] . '</td>
+                        <td colspan="3">' . $data['descripcion'] . '</td>
+                        <td>' . $data['cantidad'] . '</td>
+                        <td>' . $data['precio_venta'] . '</td>
+                        <td>' . $precio_total . '</td>
+                        <td><a href="#" onclick="event.preventDefault();del_product_detalle(' . $data['correlativo'] . ');"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
+                    </tr>
+                ';  
+                }
+                $impuesto = round($sub_total * ($iva / 100), 2);
+                $total_sin_iva = round($sub_total - $impuesto, 2);
+                $total = round($total_sin_iva + $impuesto, 2);
+
+                $detalleTotales = '
+                <tr>
+                    <td colspan="7" >Sub Total</td>
+                    <td class="text-right">' . $total_sin_iva . '</td>
+                </tr>
+                <tr>
+                    <td colspan="7" >IVA.' . $iva . '%</td>
+                    <td class="text-right">' . $impuesto . '</td>
+                    <td><button type="button" class="btn btn-danger">Anular</button></td>
+                </tr>
+                <tr>
+                    <td colspan="7" >TOTAL</td>
+                    <td>' . $total . '</td>
+                    <td><button type="button" class="btn btn-primary">Pagar</button></td>  
                 </tr>
             ';
                 $arrayData['detalle'] = $detalleTabla;
@@ -180,7 +251,7 @@ if (!empty($_POST)) {
                         <td>' . $data['cantidad'] . '</td>
                         <td>' . $data['precio_venta'] . '</td>
                         <td>' . $precio_total . '</td>
-                        <td><a href="#" onclick="event.preventDefault();del_product_detalle(' . $data['codproducto'] . ');"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
+                        <td><a href="#" onclick="event.preventDefault();del_product_detalle(' . $data['correlativo'] . ');"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
                     </tr>
                 ';
                 }
@@ -196,10 +267,12 @@ if (!empty($_POST)) {
                 <tr>
                     <td colspan="7" >IVA.' . $iva . '%</td>
                     <td class="text-right">' . $impuesto . '</td>
+                    <td><button type="button" class="btn btn-danger">Anular</button></td>
                 </tr>
                 <tr>
                     <td colspan="7" >TOTAL</td>
                     <td>' . $total . '</td>
+                    <td><button type="button" class="btn btn-primary">Pagar</button></td>  
                 </tr>
             ';
                 $arrayData['detalle'] = $detalleTabla;

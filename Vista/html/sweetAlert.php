@@ -1,3 +1,6 @@
+<?php
+include '../../includes/script.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -95,6 +98,10 @@ function DiferentPassword () {
     <input type="button" value="Delete User" onclick="DeleteUser()">
     <input type="button" value="Create User" onclick="UserCreate()">
     <input type="button" value="Diferent" onclick="DiferentPassword()">
+
+    <button type="button" class="btn btn-primary">Pagar</button>
+    <button type="button" class="btn btn-danger">Anular</button>
+
 
 
 </body>

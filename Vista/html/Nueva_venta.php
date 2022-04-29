@@ -68,6 +68,7 @@ include "../../includes/conexion.php";
                 echo ": ";
                 echo utf8_decode($row['nombre']);
                 ?></p>
+            
         </div>
         <div class="container">
         
