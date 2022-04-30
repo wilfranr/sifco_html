@@ -9,6 +9,8 @@ include '../../includes/script.php';
     <title>Title</title>
     <script src="../js/functions.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
 
 </head>
 
@@ -100,8 +102,7 @@ function DiferentPassword () {
     <input type="button" value="Diferent" onclick="DiferentPassword()">
 
     <button type="button" class="btn btn-primary">Pagar</button>
-    <button type="button" class="btn btn-danger">Anular</button>
-
+    <a href="#" class="btn btn-danger" id="btn-anular-venta"><i class="bi bi-cart-x-fill"></i> Anular</a>
 
 
 </body>

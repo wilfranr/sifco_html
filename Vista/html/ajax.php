@@ -103,7 +103,7 @@ if (!empty($_POST)) {
                     $total = round($total + $precio_total, 2);
 
                     $detalleTabla .= '
-                    <tr>
+                    <tr id="detalle_venta tr">
                         <td>'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
@@ -126,12 +126,12 @@ if (!empty($_POST)) {
                 <tr>
                     <td colspan="7" >IVA.' . $iva . '%</td>
                     <td class="text-right">' . $impuesto . '</td>
-                    <td><button type="button" class="btn btn-danger">Anular</button></td>
+                    
                 </tr>
                 <tr>
                     <td colspan="7" >TOTAL</td>
                     <td>' . $total . '</td>
-                    <td><button type="button" class="btn btn-primary">Pagar</button></td>  
+                    
                 </tr>
             ';
                 $arrayData['detalle'] = $detalleTabla;
@@ -172,7 +172,7 @@ if (!empty($_POST)) {
                     $total = round($total + $precio_total, 2);
 
                     $detalleTabla .= '
-                    <tr>
+                    <tr id="detalle_venta tr">
                         <td>'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
@@ -195,12 +195,12 @@ if (!empty($_POST)) {
                 <tr>
                     <td colspan="7" >IVA.' . $iva . '%</td>
                     <td class="text-right">' . $impuesto . '</td>
-                    <td><button type="button" class="btn btn-danger">Anular</button></td>
+                    
                 </tr>
                 <tr>
                     <td colspan="7" >TOTAL</td>
                     <td>' . $total . '</td>
-                    <td><button type="button" class="btn btn-primary">Pagar</button></td>  
+                    
                 </tr>
             ';
                 $arrayData['detalle'] = $detalleTabla;
@@ -244,7 +244,7 @@ if (!empty($_POST)) {
                     $total = round($total + $precio_total, 2);
 
                     $detalleTabla .= '
-                    <tr>
+                    <tr id="detalle_venta tr">
                         <td>'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
@@ -267,12 +267,11 @@ if (!empty($_POST)) {
                 <tr>
                     <td colspan="7" >IVA.' . $iva . '%</td>
                     <td class="text-right">' . $impuesto . '</td>
-                    <td><button type="button" class="btn btn-danger">Anular</button></td>
+                    
                 </tr>
                 <tr>
                     <td colspan="7" >TOTAL</td>
                     <td>' . $total . '</td>
-                    <td><button type="button" class="btn btn-primary">Pagar</button></td>  
                 </tr>
             ';
                 $arrayData['detalle'] = $detalleTabla;
@@ -285,6 +284,18 @@ if (!empty($_POST)) {
             mysqli_close($conexion);
         }
         exit;
+    }
+
+    //anular venta
+    if ($_POST['action'] == 'anularventa'){
+        $token = md5($_SESSION['id']);
+        $query_del = mysqli_query($conexion, "DELETE FROM detalle_temp WHERE token_user = '$token' ");
+        if ($query_del) {
+            echo 'ok';
+        }else{
+            echo 'error';
+        }exit;
+
     }
 }
 exit;

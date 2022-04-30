@@ -227,6 +227,31 @@ $(document).ready(function () {
         }
     })
 
+    //anular venta
+    $('#btn-anular-venta').click(function (e) { 
+        e.preventDefault()
+
+        var rows = $('#detalle_venta tr').length
+        if (rows > 0) {
+            var action = 'anularventa';
+
+            $.ajax({
+                url: 'ajax.php',
+                type: "POST",
+                async: true,
+                data: {action:action},
+
+                success: function(response)
+                {    
+                    if (response != 'error') {
+                        location.reload()
+                    }
+                },
+                error: function(error){}
+            })
+        }
+     })
+
 });//end ready
 
 //Eliminar prodcuto del detalle
@@ -303,6 +328,17 @@ function searchForDetalle(id) {
 
 }
 
+//mostrar u ocultar botón de pagar y anular
+function viewBtnPay() {
+    if ($('#detalle_venta tr').length > 0) {
+        $('#btn-venta').show()
+        $('#btn-anular-venta').show()
+    }else{
+        $('#btn-venta').hide()
+        $('#btn-anular-venta').hide()
+    }
+}
+
 //Enviar datos mediante Modal
 function sendDataProduct() {
     $('.alert_add_product').html('');
@@ -340,6 +376,16 @@ function closeModal() {
     $('#txtPrecio').val('');
     // $('.modal').fadeOut();
 
+}
+
+//Alerta de venta anulada
+function SaleCanceled() {
+    swal.fire({
+        title: "Cancelado!",
+        text: "Venta anulada!",
+        type: "error",
+        icon: "error",
+    });
 }
 
 //Alerta Usuario o Password Inválidos

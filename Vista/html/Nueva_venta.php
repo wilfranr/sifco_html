@@ -68,6 +68,7 @@ include "../../includes/conexion.php";
                 echo ": ";
                 echo utf8_decode($row['nombre']);
                 ?></p>
+                <a href="#" class="btn btn-danger" id="btn-anular-venta">Anular</a>
             
         </div>
         <div class="container">
