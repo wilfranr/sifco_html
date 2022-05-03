@@ -180,11 +180,15 @@ $(document).ready(function () {
         //ocultar boton si la cantidada es menor a 1
         if (($(this).val() < 1 || isNaN($(this).val())) || ($(this).val() > existencia)) {
             $('#add_product_venta').slideUp()
-        } else {
 
+        } else {
+            
             $('#add_product_venta').slideDown()
+            $('#btn-pagar-venta').slideUp()
+
         }
     })
+
 
     //Agregar producto al detalle
     $('#add_product_venta').click(function (e) {
@@ -215,9 +219,12 @@ $(document).ready(function () {
 
                         $('#txt_cant_producto').attr('disabled', 'disabled')
                         $('#add_product_venta').slideUp()
+
+
                     } else {
                         console.log('no data')
                     }
+                    viewProcesar()
                 },
                 error: function (error) {
 
@@ -245,12 +252,14 @@ $(document).ready(function () {
                 {    
                     if (response != 'error') {
                         location.reload()
-                    }
+
+}
                 },
                 error: function(error){}
             })
         }
      })
+     
 
 });//end ready
 
@@ -285,12 +294,19 @@ function del_product_detalle(correlativo) {
                 $('#detalle_venta').html('')
                 $('#detalle_totales').html('')
             }
+            viewProcesar();
         },
         error: function (error) {
         }
     });
  }
-
+function viewProcesar() {
+    if($('#detalle_venta tr').length >0){
+        $('#btn-pagar-venta').show();
+    }else{
+        $('#btn-pagar-venta').hide();
+    }
+}
 //extraer datos del detalle
 function searchForDetalle(id) {
     var action = 'searchForDetalle';
@@ -320,6 +336,7 @@ function searchForDetalle(id) {
             } else {
                 console.log('no data')
             }
+            viewProcesar()
         },
         error: function (error) {
 
@@ -328,16 +345,6 @@ function searchForDetalle(id) {
 
 }
 
-//mostrar u ocultar botón de pagar y anular
-function viewBtnPay() {
-    if ($('#detalle_venta tr').length > 0) {
-        $('#btn-venta').show()
-        $('#btn-anular-venta').show()
-    }else{
-        $('#btn-venta').hide()
-        $('#btn-anular-venta').hide()
-    }
-}
 
 //Enviar datos mediante Modal
 function sendDataProduct() {
@@ -378,15 +385,6 @@ function closeModal() {
 
 }
 
-//Alerta de venta anulada
-function SaleCanceled() {
-    swal.fire({
-        title: "Cancelado!",
-        text: "Venta anulada!",
-        type: "error",
-        icon: "error",
-    });
-}
 
 //Alerta Usuario o Password Inválidos
 function WrongPassword() {

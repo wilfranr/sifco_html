@@ -68,7 +68,7 @@ include "../../includes/conexion.php";
                 echo ": ";
                 echo utf8_decode($row['nombre']);
                 ?></p>
-                <a href="#" class="btn btn-danger" id="btn-anular-venta">Anular</a>
+                
             
         </div>
         <div class="container">
@@ -125,6 +125,11 @@ include "../../includes/conexion.php";
                     <!-- Contenido viene desde ajax -->
                 </tfoot>
             </table>
+            <div class="d-flex justify-content-end mt-5">
+            <a href="#" class="btn btn-danger m-2" id="btn-anular-venta">Anular</a>
+            
+            <a href="#" class="btn btn-primary m-2" id="btn-pagar-venta" style="display: none;">Pagar</a>
+            </div>
         </div>
 
 

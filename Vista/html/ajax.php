@@ -103,8 +103,8 @@ if (!empty($_POST)) {
                     $total = round($total + $precio_total, 2);
 
                     $detalleTabla .= '
-                    <tr id="detalle_venta tr">
-                        <td>'.$data['codproducto'].'</td>
+                    <tr>
+                        <td id="data_venta">'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
                         <td>' . $data['cantidad'] . '</td>
@@ -172,8 +172,8 @@ if (!empty($_POST)) {
                     $total = round($total + $precio_total, 2);
 
                     $detalleTabla .= '
-                    <tr id="detalle_venta tr">
-                        <td>'.$data['codproducto'].'</td>
+                    <tr">
+                        <td id="data_venta">'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
                         <td>' . $data['cantidad'] . '</td>
@@ -244,8 +244,8 @@ if (!empty($_POST)) {
                     $total = round($total + $precio_total, 2);
 
                     $detalleTabla .= '
-                    <tr id="detalle_venta tr">
-                        <td>'.$data['codproducto'].'</td>
+                    <tr>
+                        <td id="data_venta">'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
                         <td>' . $data['cantidad'] . '</td>
