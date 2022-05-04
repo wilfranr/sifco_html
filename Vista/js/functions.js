@@ -82,7 +82,6 @@ $(document).ready(function () {
             async: true,
             data: { action: action, cliente: cl },
             success: function (response) {
-                console.log(response)
                 if (response == 0) {
                     $('#id_cliente').val('');
                     $('#nom_cliente').val('');
@@ -211,6 +210,7 @@ $(document).ready(function () {
                         $('#detalle_totales').html(info.totales)
 
                         $('#txt_cod_producto').val('')
+                        $('#txt_nombre').html('-')
                         $('#txt_descripcion').html('-')
                         $('#txt_cantidad').html('-')
                         $('#txt_cant_producto').val(0)
@@ -253,12 +253,42 @@ $(document).ready(function () {
                     if (response != 'error') {
                         location.reload()
 
-}
+                    }
                 },
                 error: function(error){}
             })
         }
      })
+
+//facturar venta
+$('#btn-pagar-venta').click(function (e) { 
+    e.preventDefault()
+
+    var rows = $('#detalle_venta tr').length
+    if (rows > 0) {
+        var action = 'procesarVenta';
+        var codcliente = $('#id_cliente').val()
+
+        $.ajax({
+            url: 'ajax.php',
+            type: "POST",
+            async: true,
+            data: {action:action,codcliente:codcliente},
+
+            success: function(response)
+            {    
+                if (response != 'error') {
+                    var info = JSON.parse(response)
+                    location.reload()
+
+                }else{
+                    console.log('no data')
+                }
+            },
+            error: function(error){}
+        })
+    }
+ })
      
 
 });//end ready
@@ -281,6 +311,7 @@ function del_product_detalle(correlativo) {
                 $('#detalle_totales').html(info.totales)
 
                 $('#txt_cod_producto').val('')
+                $('#txt_nombre').html('-')
                 $('#txt_descripcion').html('-')
                 $('#txt_cantidad').html('-')
                 $('#txt_cant_producto').val(0)
@@ -320,10 +351,13 @@ function searchForDetalle(id) {
 
         success: function (response) {
             if (response != 'error') {
+                console.log(response)
                 var info = JSON.parse(response)
+
                 $('#detalle_venta').html(info.detalle)
                 $('#detalle_totales').html(info.totales)
 
+                $('#txt_nombre').html('-')
                 $('#txt_cod_producto').val('')
                 $('#txt_descripcion').html('-')
                 $('#txt_cantidad').html('-')

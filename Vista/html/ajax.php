@@ -224,7 +224,14 @@ if (!empty($_POST)) {
             $iva = 16;
 
             //query para extraer los datos de detalle_temp
-            $query = mysqli_query($conexion, "SELECT tmp.correlativo, tmp.token_user, tmp.cantidad, tmp.precio_venta, p.codproducto, p.nombre, p.descripcion FROM detalle_temp tmp INNER JOIN producto p ON tmp.codproducto = p.codproducto WHERE token_user = '$token' ");
+            $query = mysqli_query($conexion, "SELECT tmp.correlativo, 
+                                                    tmp.token_user, 
+                                                    tmp.cantidad, 
+                                                    tmp.precio_venta, 
+                                                    p.codproducto, 
+                                                    p.nombre, 
+                                                    p.descripcion 
+                                                FROM detalle_temp tmp INNER JOIN producto p ON tmp.codproducto = p.codproducto WHERE token_user = '$token' ");
             
             $result = mysqli_num_rows($query);
 
@@ -272,6 +279,7 @@ if (!empty($_POST)) {
                 <tr>
                     <td colspan="7" >TOTAL</td>
                     <td>' . $total . '</td>
+                    
                 </tr>
             ';
                 $arrayData['detalle'] = $detalleTabla;
@@ -296,6 +304,36 @@ if (!empty($_POST)) {
             echo 'error';
         }exit;
 
+    }
+    //procesar venta
+    if ($_POST['action'] == 'procesarVenta'){
+        if (empty($_POST['codcliente'])) {
+            $codcliente = 1;
+        }else{
+            $codcliente = $_POST['codcliente'];
+        }
+        $token = md5($_SESSION['id']);
+        $usuario = $_SESSION['codUsuario'];
+
+        $query = mysqli_query($conexion,"SELECT * FROM detalle_temp WHERE token_user = '$token' ");
+        $result = mysqli_num_rows($query);
+
+        if ($result > 0) {
+            
+            $query_procesar = mysqli_query($conexion,"CALL procesar_venta($usuario,$codcliente,'$token')");
+            $result_detalle = mysqli_num_rows($query_procesar);
+
+            if ($result_detalle > 0) {
+                $data = mysqli_fetch_assoc($query_procesar);
+                echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            }else{
+                echo "error";
+            }
+        }else{
+            echo "error";
+        }
+        mysqli_close($conexion);
+        exit;
     }
 }
 exit;
