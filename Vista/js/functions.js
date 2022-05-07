@@ -279,6 +279,9 @@ $('#btn-pagar-venta').click(function (e) {
             {    
                 if (response != 'error') {
                     var info = JSON.parse(response)
+                    console.log(info)
+
+                    generarPDF(info.codcliente,info.nofactura)
                     location.reload()
 
                 }else{
@@ -292,6 +295,22 @@ $('#btn-pagar-venta').click(function (e) {
      
 
 });//end ready
+
+//generar pdf
+function generarPDF(cliente,factura) { 
+    
+    //tamaño de la ventana
+    var ancho = 1000;
+    var alto = 800;
+
+    //Calcular posición de la ventana
+    var x = parseInt((window.screen.width/2) - (ancho/2))
+    var y = parseInt((window.screen.width/2) - (alto/2))
+
+    $url = '../factura/generaFactura.php?cl='+cliente+'&f='+factura;
+    window.open($url,"Factura","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
+
+ }
 
 //Eliminar prodcuto del detalle
 function del_product_detalle(correlativo) { 

@@ -222,6 +222,10 @@ if (!empty($_POST)) {
         } else {
             $token = md5($_SESSION['id']);
             $iva = 16;
+            $detalleTabla = '';
+            $sub_total = 0;
+            $total = 0;
+            $arrayData = array();
 
             //query para extraer los datos de detalle_temp
             $query = mysqli_query($conexion, "SELECT tmp.correlativo, 
@@ -237,10 +241,6 @@ if (!empty($_POST)) {
 
 
 
-            $detalleTabla = '';
-            $sub_total = 0;
-            $total = 0;
-            $arrayData = array();
             
 
             if ($result > 0) {
@@ -287,7 +287,9 @@ if (!empty($_POST)) {
 
                 echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
             } else {
-                echo 'error';
+                echo 'error en result searchForDetalle';
+                echo $result;
+                echo $token;
             }
             mysqli_close($conexion);
         }
