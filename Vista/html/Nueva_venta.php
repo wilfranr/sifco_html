@@ -61,16 +61,7 @@ include "../../includes/conexion.php";
                 </form>
             </div>
         </div>
-        <div class="container nueva_venta mb-5">
-            <p class="fw-bold">Datos de Facturación</p>
-            <p><?php
-                echo utf8_decode($row['rol']);
-                echo ": ";
-                echo utf8_decode($row['nombre']);
-                ?></p>
-                
-            
-        </div>
+        
         <div class="container">
         
 
@@ -139,7 +130,7 @@ include "../../includes/conexion.php";
     <!-- funcion para conservar detalle -->
     <script type="text/javascript">
         $(document).ready(function () {
-            var usuarioid = <?php echo $_SESSION['id'];?>;
+            var usuarioid = <?php echo $_SESSION['codUsuario'];?>;
             searchForDetalle(usuarioid);
           });
     </script>

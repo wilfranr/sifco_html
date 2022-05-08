@@ -79,23 +79,33 @@ if (!empty($_POST)) {
     //Agregar producto al detalle temporal
     if ($_POST['action'] == 'add_product_detalle') {
         if (empty($_POST['producto']) || empty($_POST['cantidad'])) {
-            echo 'erro';
+            echo 'error';
         } else {
             $codproducto = $_POST['producto'];
             $cantidad = $_POST['cantidad'];
             $token = md5($_SESSION['id']);
-            $iva = 16;
+            
+            //Extraer el iva
+            $query_iva = mysqli_query($conexion,"SELECT iva FROM configuracion");
+            $result_iva = mysqli_num_rows($query_iva);
 
+            //llamara procedimiento almacenado
             $query_detalle_temp = mysqli_query($conexion, "CALL add_detalle_temp($codproducto,$cantidad,'$token')");
             $result = mysqli_num_rows($query_detalle_temp);
+
 
             $detalleTabla = '';
             $sub_total = 0;
             $total = 0;
+            $iva = 0;
             $arrayData = array();
             
 
             if ($result > 0) {
+                if ($result_iva > 0) {
+                    $info_iva = mysqli_fetch_assoc($query_iva);
+                    $iva = $info_iva['iva'];
+                }
 
                 while ($data = mysqli_fetch_assoc($query_detalle_temp)) {
                     $precio_total = round($data['cantidad'] * $data['precio_venta'], 2);
@@ -137,7 +147,7 @@ if (!empty($_POST)) {
                 $arrayData['detalle'] = $detalleTabla;
                 $arrayData['totales'] = $detalleTotales;
 
-                echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+                echo json_encode($arrayData,JSON_UNESCAPED_UNICODE);
             } else {
                 echo 'error';
             }
@@ -145,6 +155,7 @@ if (!empty($_POST)) {
         }
         exit;
     }
+
     //eliminar producto del detelle temporal
     if ($_POST['action'] == 'delProductoDetalle') {
         if (empty($_POST['id_detalle'])) {
@@ -154,6 +165,10 @@ if (!empty($_POST)) {
             $id_detalle = $_POST['id_detalle'];
             $token = md5($_SESSION['id']);
 
+            //Extraer el iva
+            $query_iva = mysqli_query($conexion,"SELECT iva FROM configuracion");
+            $result_iva = mysqli_num_rows($query_iva);
+
             //query para llamar el procedimiento almacenado
             $query_detalle_temp = mysqli_query($conexion, "CALL del_detalle_temp($id_detalle,'$token')");
             $result = mysqli_num_rows($query_detalle_temp);
@@ -161,10 +176,14 @@ if (!empty($_POST)) {
             $detalleTabla = '';
             $sub_total = 0;
             $total = 0;
-            $iva = 19;
+            $iva = 0;
             $arrayData = array();
 
             if ($result > 0) {
+                if ($result_iva > 0) {
+                    $info_iva = mysqli_fetch_assoc($query_iva);
+                    $iva = $info_iva['iva'];
+                }
 
                 while ($data = mysqli_fetch_assoc($query_detalle_temp)) {
                     $precio_total = round($data['cantidad'] * $data['precio_venta'], 2);
@@ -173,7 +192,7 @@ if (!empty($_POST)) {
 
                     $detalleTabla .= '
                     <tr">
-                        <td id="data_venta">'.$data['codproducto'].'</td>
+                        <td>'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
                         <td>' . $data['cantidad'] . '</td>
@@ -206,7 +225,7 @@ if (!empty($_POST)) {
                 $arrayData['detalle'] = $detalleTabla;
                 $arrayData['totales'] = $detalleTotales;
 
-                echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+                echo json_encode($arrayData,JSON_UNESCAPED_UNICODE);
             } else {
                 echo 'error';
             }
@@ -221,7 +240,6 @@ if (!empty($_POST)) {
             echo 'error';
         } else {
             $token = md5($_SESSION['id']);
-            $iva = 16;
             $detalleTabla = '';
             $sub_total = 0;
             $total = 0;
@@ -238,12 +256,23 @@ if (!empty($_POST)) {
                                                 FROM detalle_temp tmp INNER JOIN producto p ON tmp.codproducto = p.codproducto WHERE token_user = '$token' ");
             
             $result = mysqli_num_rows($query);
-
-
-
             
+            //Extraer el iva
+            $query_iva = mysqli_query($conexion,"SELECT iva FROM configuracion");
+            $result_iva = mysqli_num_rows($query_iva);
+
+            $detalleTabla = '';
+            $sub_total = 0;
+            $total = 0;
+            $iva = 0;
+            $arrayData = array();
 
             if ($result > 0) {
+                if ($result_iva > 0) {
+                    $info_iva = mysqli_fetch_assoc($query_iva);
+                    $iva = $info_iva['iva'];
+                }
+
 
                 while ($data = mysqli_fetch_assoc($query)) {
                     $precio_total = round($data['cantidad'] * $data['precio_venta'], 2);
@@ -251,8 +280,8 @@ if (!empty($_POST)) {
                     $total = round($total + $precio_total, 2);
 
                     $detalleTabla .= '
-                    <tr>
-                        <td id="data_venta">'.$data['codproducto'].'</td>
+                    <tr id="tr-venta">
+                        <td>'.$data['codproducto'].'</td>
                         <td>' . $data['nombre'] . '</td>
                         <td colspan="3">' . $data['descripcion'] . '</td>
                         <td>' . $data['cantidad'] . '</td>
@@ -285,11 +314,11 @@ if (!empty($_POST)) {
                 $arrayData['detalle'] = $detalleTabla;
                 $arrayData['totales'] = $detalleTotales;
 
-                echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+                echo json_encode($arrayData,JSON_UNESCAPED_UNICODE);
+                
             } else {
-                echo 'error en result searchForDetalle';
                 echo $result;
-                echo $token;
+                echo 'error';
             }
             mysqli_close($conexion);
         }

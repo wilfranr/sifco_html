@@ -192,6 +192,7 @@ $(document).ready(function () {
     //Agregar producto al detalle
     $('#add_product_venta').click(function (e) {
         e.preventDefault();
+
         if ($('#txt_cant_producto').val() > 0) {
             var codproducto = $('#txt_cod_producto').val()
             var cantidad = $('#txt_cant_producto').val()
@@ -218,7 +219,7 @@ $(document).ready(function () {
                         $('#txt_precio_total').html('0.00')
 
                         $('#txt_cant_producto').attr('disabled', 'disabled')
-                        $('#add_product_venta').slideUp()
+                        $('#add_product_venta').slideUp()//ocultar botón
 
 
                     } else {
@@ -326,6 +327,7 @@ function del_product_detalle(correlativo) {
         success: function (response) {
             if (response !='error') {
                 var info = JSON.parse(response)
+
                 $('#detalle_venta').html(info.detalle)
                 $('#detalle_totales').html(info.totales)
 
@@ -360,41 +362,33 @@ function viewProcesar() {
 //extraer datos del detalle
 function searchForDetalle(id) {
     var action = 'searchForDetalle';
-    var user = id;
+    var user = id;     
+    
 
-    $.ajax({
-        url: 'ajax.php',
-        type: "POST",
-        async: true,
-        data: { action:action, user:user },
+        $.ajax({
+            url: 'ajax.php',
+            type: "POST",
+            async: true,
+            data: { action:action, user:user },
 
-        success: function (response) {
-            if (response != 'error') {
-                console.log(response)
-                var info = JSON.parse(response)
+            success: function (response) {
+                if (response != 'error') {
+                    var info = JSON.parse(response);
 
-                $('#detalle_venta').html(info.detalle)
-                $('#detalle_totales').html(info.totales)
+                    $('#detalle_venta').html(info.detalle)
+                    $('#detalle_totales').html(info.totales)
 
-                $('#txt_nombre').html('-')
-                $('#txt_cod_producto').val('')
-                $('#txt_descripcion').html('-')
-                $('#txt_cantidad').html('-')
-                $('#txt_cant_producto').val(0)
-                $('#txt_precio').html('0.00')
-                $('#txt_precio_total').html('0.00')
+                    
 
-                $('#txt_cant_producto').attr('disabled', 'disabled')
-                $('#add_product_venta').slideUp()
-            } else {
-                console.log('no data')
+                } else {
+                    console.log('no data')
+                }
+                viewProcesar()
+            },
+            error: function (error) {
             }
-            viewProcesar()
-        },
-        error: function (error) {
-
-        }
-    })
+        })
+    
 
 }
 
