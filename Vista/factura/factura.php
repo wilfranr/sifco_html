@@ -1,4 +1,5 @@
 <?php
+	include'../../includes/script.php';
 	$subtotal 	= 0;
 	$iva 	 	= 0;
 	$impuesto 	= 0;
@@ -29,7 +30,6 @@
 				 ?>
 				<div>
 					<span class="h2"><?php echo strtoupper($configuracion['nombre']); ?></span>
-					<p><?php echo $configuracion['razon_social']; ?></p>
 					<p><?php echo $configuracion['direccion']; ?></p>
 					<p>NIT: <?php echo $configuracion['nit']; ?></p>
 					<p>Teléfono: <?php echo $configuracion['telefono']; ?></p>
@@ -41,7 +41,7 @@
 			</td>
 			<td class="info_factura">
 				<div class="round">
-					<span class="h3">Factura</span>
+					<span class="h3">Factura</span>	
 					<p>No. Factura: <strong><?php echo $factura['nofactura']; ?></strong></p>
 					<p>Fecha: <?php echo $factura['fecha']; ?></p>
 					<p>Hora: <?php echo $factura['hora']; ?></p>
@@ -57,7 +57,7 @@
 					<span class="h3">Cliente</span>
 					<table class="datos_cliente">
 						<tr>
-							<td><label>Nit:</label><p><?php echo $factura['nit']; ?></p></td>
+							<td><label>Nit o CC:</label><p><?php echo $factura['id']; ?></p></td>
 							<td><label>Teléfono:</label> <p><?php echo $factura['telefono']; ?></p></td>
 						</tr>
 						<tr>

@@ -22,11 +22,11 @@
 		$noFactura = $_REQUEST['f'];
 		$anulada = '';
 
-		// $query_config   = mysqli_query($conection,"SELECT * FROM configuracion");
-		// $result_config  = mysqli_num_rows($query_config);
-		// if($result_config > 0){
-		// 	$configuracion = mysqli_fetch_assoc($query_config);
-		// }
+		$query_config   = mysqli_query($conexion,"SELECT * FROM configuracion");
+		$result_config  = mysqli_num_rows($query_config);
+		if($result_config > 0){
+			$configuracion = mysqli_fetch_assoc($query_config);
+		}
 
 
 		$query = mysqli_query($conexion,"SELECT f.nofactura, DATE_FORMAT(f.fecha, '%d/%m/%Y') as fecha, DATE_FORMAT(f.fecha,'%H:%i:%s') as hora, f.codcliente, v.nombre as vendedor, cl.id, cl.nombre, cl.telefono,cl.direccion FROM factura f INNER JOIN usuario v ON f.usuario = v.codUsuario INNER JOIN cliente cl ON f.codcliente = cl.codCliente WHERE f.nofactura = '$noFactura' AND f.codcliente = '$codCliente' ");
