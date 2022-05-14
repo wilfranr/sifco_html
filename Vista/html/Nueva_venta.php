@@ -119,7 +119,9 @@ include "../../includes/conexion.php";
             <div class="d-flex justify-content-end mt-5">
             <a href="#" class="btn btn-danger m-2" id="btn-anular-venta">Anular</a>
             
-            <a href="#" class="btn btn-primary m-2" id="btn-pagar-venta" style="display: none;">Pagar</a>
+            <a href="#" class="btn btn-primary m-2" id="btn-pagar-venta" style="display: none;">Procesar</a>
+            <a href="#" class="btn btn-success m-2" id="btn-pagar2-venta" style="display: none;" onclick="pagar()">pagar</a>
+
             </div>
         </div>
 

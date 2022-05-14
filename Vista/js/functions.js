@@ -181,7 +181,7 @@ $(document).ready(function () {
             $('#add_product_venta').slideUp()
 
         } else {
-            
+
             $('#add_product_venta').slideDown()
             $('#btn-pagar-venta').slideUp()
 
@@ -236,7 +236,7 @@ $(document).ready(function () {
     })
 
     //anular venta
-    $('#btn-anular-venta').click(function (e) { 
+    $('#btn-anular-venta').click(function (e) {
         e.preventDefault()
 
         var rows = $('#detalle_venta tr').length
@@ -247,74 +247,72 @@ $(document).ready(function () {
                 url: 'ajax.php',
                 type: "POST",
                 async: true,
-                data: {action:action},
+                data: { action: action },
 
-                success: function(response)
-                {    
+                success: function (response) {
                     if (response != 'error') {
                         location.reload()
 
                     }
                 },
-                error: function(error){}
+                error: function (error) { }
             })
         }
-     })
+    })
 
-//facturar venta
-$('#btn-pagar-venta').click(function (e) { 
-    e.preventDefault()
+    //facturar venta
+    $('#btn-pagar-venta').click(function (e) {
+        e.preventDefault()
 
-    var rows = $('#detalle_venta tr').length
-    if (rows > 0) {
-        var action = 'procesarVenta';
-        var codcliente = $('#id_cliente').val()
+        var rows = $('#detalle_venta tr').length
+        if (rows > 0) {
+            var action = 'procesarVenta';
+            var codcliente = $('#id_cliente').val()
 
-        $.ajax({
-            url: 'ajax.php',
-            type: "POST",
-            async: true,
-            data: {action:action,codcliente:codcliente},
+            $.ajax({
+                url: 'ajax.php',
+                type: "POST",
+                async: true,
+                data: { action: action, codcliente: codcliente },
 
-            success: function(response)
-            {    
-                if (response != 'error') {
-                    var info = JSON.parse(response)
-                    console.log(info)
+                success: function (response) {
+                    if (response != 'error') {
+                        var info = JSON.parse(response)
+                        console.log(info)
 
-                    generarPDF(info.codcliente,info.nofactura)
-                    location.reload()
+                        generarPDF(info.codcliente, info.nofactura)
+                        location.reload()
 
-                }else{
-                    console.log('no data')
-                }
-            },
-            error: function(error){}
-        })
-    }
- })
-     
+                    } else {
+                        console.log('no data')
+                    }
+                },
+                error: function (error) { }
+            })
+        }
+    })
+
 
 });//end ready
 
 //generar pdf
-function generarPDF(cliente,factura) { 
-    
+function generarPDF(cliente, factura) {
+
     //tamaño de la ventana
     var ancho = 1000;
     var alto = 800;
 
     //Calcular posición de la ventana
-    var x = parseInt((window.screen.width/2) - (ancho/2))
-    var y = parseInt((window.screen.width/2) - (alto/2))
+    var x = parseInt((window.screen.width / 2) - (ancho / 2))
+    var y = parseInt((window.screen.width / 2) - (alto / 2))
 
-    $url = '../factura/generaFactura.php?cl='+cliente+'&f='+factura;
-    window.open($url,"Factura","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
+    $url = '../factura/generaFactura.php?cl=' + cliente + '&f=' + factura;
+    window.open($url, "Factura", "left=" + x + ",top=" + y + ",height=" + alto + ",width=" + ancho + ",scrollbar=si,location=no,resizable=si,menubar=no");
 
- }
+}
 
 //Eliminar prodcuto del detalle
-function del_product_detalle(correlativo) { 
+function del_product_detalle(correlativo) {
     var action = 'delProductoDetalle';
     var id_detalle = correlativo;
 
@@ -322,10 +320,10 @@ function del_product_detalle(correlativo) {
         url: 'ajax.php',
         type: "POST",
         async: true,
-        data: { action:action, id_detalle:id_detalle},
+        data: { action: action, id_detalle: id_detalle },
 
         success: function (response) {
-            if (response !='error') {
+            if (response != 'error') {
                 var info = JSON.parse(response)
 
                 $('#detalle_venta').html(info.detalle)
@@ -342,7 +340,7 @@ function del_product_detalle(correlativo) {
                 $('#txt_cant_producto').attr('disabled', 'disabled')
                 $('#add_product_venta').slideUp()
 
-            }else{
+            } else {
                 $('#detalle_venta').html('')
                 $('#detalle_totales').html('')
             }
@@ -351,44 +349,46 @@ function del_product_detalle(correlativo) {
         error: function (error) {
         }
     });
- }
+}
 function viewProcesar() {
-    if($('#detalle_venta tr').length >0){
+    if ($('#detalle_venta tr').length > 0) {
+        $('#btn-pagar2-venta').show();
         $('#btn-pagar-venta').show();
-    }else{
+    } else {
         $('#btn-pagar-venta').hide();
+        $('#btn-pagar2-venta').show();
     }
 }
 //extraer datos del detalle
 function searchForDetalle(id) {
     var action = 'searchForDetalle';
-    var user = id;     
-    
+    var user = id;
 
-        $.ajax({
-            url: 'ajax.php',
-            type: "POST",
-            async: true,
-            data: { action:action, user:user },
 
-            success: function (response) {
-                if (response != 'error') {
-                    var info = JSON.parse(response);
+    $.ajax({
+        url: 'ajax.php',
+        type: "POST",
+        async: true,
+        data: { action: action, user: user },
 
-                    $('#detalle_venta').html(info.detalle)
-                    $('#detalle_totales').html(info.totales)
+        success: function (response) {
+            if (response != 'error') {
+                var info = JSON.parse(response);
 
-                    
+                $('#detalle_venta').html(info.detalle)
+                $('#detalle_totales').html(info.totales)
 
-                } else {
-                    console.log('no data')
-                }
-                viewProcesar()
-            },
-            error: function (error) {
+
+
+            } else {
+                console.log('no data')
             }
-        })
-    
+            viewProcesar()
+        },
+        error: function (error) {
+        }
+    })
+
 
 }
 
@@ -456,6 +456,7 @@ function ClientModify() {
     });
 }
 
+//Alerta usuario modificado
 function UserModify() {
     swal.fire({
         title: "Éxito",
@@ -467,6 +468,7 @@ function UserModify() {
     });
 }
 
+//Alerta Usuario creado
 function UserCreate() {
     swal.fire({
         title: "Usuario Creado!!!",
@@ -749,4 +751,48 @@ function errorData() {
         type: "error",
         icon: "error",
     });
+}
+
+//funcion para pagar venta
+function pagar() {
+    var valor = 2000;
+    var paga = "";
+    
+    
+    
+    
+    Swal.fire({
+        title: '<strong>PAGAR</strong>',
+        icon: '',
+        html:
+            '<p>Valor a pagar: $' + valor + '</p>' +
+            '<p><label for="valor">Paga con: </label></p>' +
+            '<input type="number" name="paga" id="paga" >',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText:
+            '<i class="fa fa-thumbs-up"></i> Pagar!',
+        confirmButtonAriaLabel: 'Thumbs up, great!',
+        cancelButtonText:
+            '<i class="fa fa-thumbs-down">Cancelar</i>',
+        cancelButtonAriaLabel: 'Thumbs down',
+    }).then((result) => {
+        paga = document.getElementById('paga').value;
+        if (result.isConfirmed) {
+            if (paga < valor) {
+                Swal.fire('Valor incorrecto')
+            }else{
+            var cambio = paga - valor;
+            Swal.fire('Cambio $: '+ cambio)
+            }
+          }
+
+    })
+    
+}
+function pago_success() {
+    var paga = document.getElementById('#paga');
+    
+    Swal.fire('Cambio: '+ cambio)
 }

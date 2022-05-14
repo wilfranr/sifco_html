@@ -100,9 +100,16 @@ function DiferentPassword () {
     <input type="button" value="Delete User" onclick="DeleteUser()">
     <input type="button" value="Create User" onclick="UserCreate()">
     <input type="button" value="Diferent" onclick="DiferentPassword()">
+    <input type="button" value="prueba" onclick="DiferentPassword()">
 
-    <button type="button" class="btn btn-primary">Pagar</button>
+    <a href="#" type="button" class="btn btn-primary" onclick="pagar()">Pagar</a>
     <a href="#" class="btn btn-danger" id="btn-anular-venta"><i class="bi bi-cart-x-fill"></i> Anular</a>
+
+    
+    <p>Valor a pagar: $2000</p>
+    <label for="valor">Paga: </label>
+    <input type="text" name="valor" id="valor" >
+    <p>cambio: $1000</p>
 
 
 </body>
