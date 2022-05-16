@@ -350,15 +350,16 @@ function del_product_detalle(correlativo) {
         }
     });
 }
+
+//Mostrar boton de pagar venta
 function viewProcesar() {
     if ($('#detalle_venta tr').length > 0) {
         $('#btn-pagar2-venta').show();
-        $('#btn-pagar-venta').show();
     } else {
-        $('#btn-pagar-venta').hide();
         $('#btn-pagar2-venta').show();
     }
 }
+
 //extraer datos del detalle
 function searchForDetalle(id) {
     var action = 'searchForDetalle';
@@ -392,7 +393,6 @@ function searchForDetalle(id) {
 
 }
 
-
 //Enviar datos mediante Modal
 function sendDataProduct() {
     $('.alert_add_product').html('');
@@ -423,6 +423,7 @@ function sendDataProduct() {
     });
 
 }
+
 //cerrar modal
 function closeModal() {
     $('.alert_add_product').html('');
@@ -431,7 +432,6 @@ function closeModal() {
     // $('.modal').fadeOut();
 
 }
-
 
 //Alerta Usuario o Password Inválidos
 function WrongPassword() {
@@ -681,8 +681,8 @@ function UserPasswordExists() {
         history.back();
     });
 }
-//usuario no tiene acceso
 
+//usuario no tiene acceso
 function UserNoAccess() {
     swal.fire({
         title: "Acceso Negado!!",
@@ -755,22 +755,22 @@ function errorData() {
 
 //funcion para pagar venta
 function pagar() {
-    var valor = 2000;
-    var paga = "";
     
-    
+    var valor = "";
+    var valor = document.getElementById('total').innerHTML;
+
     
     
     Swal.fire({
+        
         title: '<strong>PAGAR</strong>',
-        icon: '',
         html:
             '<p>Valor a pagar: $' + valor + '</p>' +
             '<p><label for="valor">Paga con: </label></p>' +
             '<input type="number" name="paga" id="paga" >',
         showCloseButton: true,
         showCancelButton: true,
-        focusConfirm: false,
+        focusConfirm: true,
         confirmButtonText:
             '<i class="fa fa-thumbs-up"></i> Pagar!',
         confirmButtonAriaLabel: 'Thumbs up, great!',
@@ -779,20 +779,60 @@ function pagar() {
         cancelButtonAriaLabel: 'Thumbs down',
     }).then((result) => {
         paga = document.getElementById('paga').value;
+
         if (result.isConfirmed) {
             if (paga < valor) {
                 Swal.fire('Valor incorrecto')
             }else{
             var cambio = paga - valor;
-            Swal.fire('Cambio $: '+ cambio)
+            Swal.fire({
+                title: '<strong>PAGO EXITOSO</strong>',
+                html: 'Cambio $: '+ cambio,
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: true,
+                confirmButtonText: '<i class="fa fa-thumbs-up"></i> Imprimir!',
+                confirmButtonAriaLabel: 'Thumbs up, great!',                
+                cancelButtonText: '<i class="fa fa-thumbs-down">Cancelar</i>',
+                cancelButtonAriaLabel: 'Thumbs down',
+            }).then((result) =>{
+                if (result.isConfirmed){
+                    procesarVenta()
+                }
+            });
             }
           }
 
     })
     
 }
-function pago_success() {
-    var paga = document.getElementById('#paga');
-    
-    Swal.fire('Cambio: '+ cambio)
+
+//procesar venta
+function procesarVenta(procesarVenta) {
+    var rows = $('#detalle_venta tr').length
+        if (rows > 0) {
+            var action = 'procesarVenta';
+            var codcliente = $('#id_cliente').val()
+
+            $.ajax({
+                url: 'ajax.php',
+                type: "POST",
+                async: true,
+                data: { action: action, codcliente: codcliente },
+
+                success: function (response) {
+                    if (response != 'error') {
+                        var info = JSON.parse(response)
+                        console.log(info)
+
+                        generarPDF(info.codcliente, info.nofactura)
+                        location.reload()
+
+                    } else {
+                        console.log('no data')
+                    }
+                },
+                error: function (error) { }
+            })
+        }
 }

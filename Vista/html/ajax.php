@@ -139,8 +139,8 @@ if (!empty($_POST)) {
                     
                 </tr>
                 <tr>
-                    <td colspan="7" >TOTAL</td>
-                    <td>' . $total . '</td>
+                    <td colspan="7">TOTAL</td>
+                    <td  id="total">' . $total . '</td>
                     
                 </tr>
             ';
@@ -218,7 +218,7 @@ if (!empty($_POST)) {
                 </tr>
                 <tr>
                     <td colspan="7" >TOTAL</td>
-                    <td>' . $total . '</td>
+                    <td id="total">' . $total . '</td>
                     
                 </tr>
             ';
@@ -307,7 +307,7 @@ if (!empty($_POST)) {
                 </tr>
                 <tr>
                     <td colspan="7" >TOTAL</td>
-                    <td>' . $total . '</td>
+                    <td id="total">' . $total . '</td>
                     
                 </tr>
             ';

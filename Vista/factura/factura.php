@@ -91,8 +91,8 @@
 				<tr>
 					<td class="textcenter"><?php echo $row['cantidad']; ?></td>
 					<td><?php echo $row['descripcion']; ?></td>
-					<td class="textright"><?php echo $row['precio_venta']; ?></td>
-					<td class="textright"><?php echo $row['precio_total']; ?></td>
+					<td class="textright">$<?php echo $row['precio_venta']; ?></td>
+					<td class="textright">$<?php echo $row['precio_total']; ?></td>
 				</tr>
 			<?php
 						$precio_total = $row['precio_total'];
@@ -107,16 +107,16 @@
 			</tbody>
 			<tfoot id="detalle_totales">
 				<tr>
-					<td colspan="3" class="textright"><span>SUBTOTAL Q.</span></td>
-					<td class="textright"><span><?php echo $tl_sniva; ?></span></td>
+					<td colspan="3" class="textright"><span>SUBTOTAL</span></td>
+					<td class="textright"><span>$<?php echo $tl_sniva; ?></span></td>
 				</tr>
 				<tr>
 					<td colspan="3" class="textright"><span>IVA (<?php echo $iva; ?> %)</span></td>
-					<td class="textright"><span><?php echo $impuesto; ?></span></td>
+					<td class="textright"><span>$<?php echo $impuesto; ?></span></td>
 				</tr>
 				<tr>
-					<td colspan="3" class="textright"><span>TOTAL Q.</span></td>
-					<td class="textright"><span><?php echo $total; ?></span></td>
+					<td colspan="3" class="textright"><span>TOTAL</span></td>
+					<td class="textright"><span>$<?php echo $total; ?></span></td>
 				</tr>
 		</tfoot>
 	</table>
