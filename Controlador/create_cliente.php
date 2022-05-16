@@ -2,6 +2,7 @@
 echo'<script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>';
 include '../includes/script.php';
 
+//funcion para nuevo cliente
 newCliente($_POST['id'], $_POST['name'], $_POST['typeId'], $_POST['dir'], $_POST['tel'], $_POST['email'] );
 function newCliente($id, $name, $typeId, $dir, $tel, $email){
     
