@@ -29,7 +29,7 @@
 					<p>No. Factura: <strong>000001</strong></p>
 					<p>Fecha: 20/01/2019</p>
 					<p>Hora: 10:30am</p>
-					<p>Vendedor: Jorge Pérez Hernández Cabrera</p>
+					<p>Vendedor: Yoseth Rivera</p>
 				</div>
 			</td>
 		</tr>

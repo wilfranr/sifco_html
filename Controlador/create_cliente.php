@@ -12,11 +12,12 @@ function newCliente($id, $name, $typeId, $dir, $tel, $email){
         $result = $conexion->query($sentence) or die ("Error al Consultar BD: " .mysqli_error($conexion));
 
         $rows = mysqli_num_rows($result);
+        //Validación de cliente existente
         if ($rows>0){
             echo'<script>
                     IdExist()
                 </script>';
-        }else if($rows==0){
+        }else if($rows==0){//query para crear cliente
             include '../includes/conexion.php';
             $sentence2 = "INSERT INTO cliente (id, nombre, tipoId, direccion, telefono, correo) VALUES ('".$id."', '".$name."', '".$typeId."', '".$dir."', '".$tel."', '".$email."' )";
             $conexion->query($sentence2) or die ("Error al crear el usuario: ".mysqli_error($conexion));

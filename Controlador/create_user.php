@@ -18,12 +18,14 @@ function newUser($id, $name, $user, $pass, $type, $typeId, $dir, $tel, $email){
         $result = $conexion->query($sentence) or die ("Error al Consultar BD: " .mysqli_error($conexion));
 
         $rows = mysqli_num_rows($result);
+        //Validación de password que coinciden
         if ($rows>0){
             echo'<script>
                 UserPasswordExists()       
                 </script>'; 
         }else if($rows==0){
             include '../includes/conexion.php';
+            //query para creación de usuario
             $sentence2 = "INSERT INTO usuario (id, nombre, usuario, clave, rol, tipoId, direccion, telefono, correo) VALUES ('".$id."', '".$name."', '".$user."', '".$passmd5."', '".$type."', '".$typeId."', '".$dir."', '".$tel."', '".$email."' )";
             $conexion->query($sentence2) or die ("Error al crear el usuario: ".mysqli_error($conexion));
 

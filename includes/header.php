@@ -3,7 +3,7 @@
 include 'conexion.php';
 
 session_start();
-if (empty($_SESSION['active'])) {
+if (empty($_SESSION['active'])) {//Verificación de sesión activa
     echo'<script>window.location.href="../html/page_blank.php";</script>';
 }
 $id = $_SESSION['id'];

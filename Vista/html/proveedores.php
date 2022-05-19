@@ -3,6 +3,8 @@
     include '../../includes/header.php';
     include '../../includes/nav.php';
     include '../../includes/script.php';
+
+    //validación de usuario logueado    
     if ($_SESSION['rol'] == 'Administrador'||$_SESSION['rol']=='Vendedor'){
 ?>
 <!DOCTYPE html>
@@ -45,6 +47,7 @@
             $desde = ($pagina-1) * $por_pagina;
             $total_paginas=ceil($total_registro/$por_pagina);
 
+            //query para traer todos los proveedores
             $sentence="SELECT * FROM proveedor ORDER BY proveedor LIMIT $desde, $por_pagina";
             $result = $conexion->query($sentence) or die ("Error al consultar: " .mysqli_error($conexion));
             mysqli_close($conexion);

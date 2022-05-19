@@ -17,6 +17,7 @@ include '../../includes/nav.php';
 
     <a href=""><img src="../img/descargar.png" alt="" width="170px"> </a>
     <h3>Descargar Manual de Usuario</h3>
+    <p>Proximamente...</p>
 </div>
 </body>
 

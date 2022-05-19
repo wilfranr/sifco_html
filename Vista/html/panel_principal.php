@@ -54,6 +54,7 @@ include '../../includes/script.php'
 
 
     <?php
+    //Validación de elementos que se muestran segun rol de usuario
     if ($_SESSION['rol'] == 'Vendedor') {
     ?>
         <style>

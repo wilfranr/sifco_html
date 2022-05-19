@@ -1,11 +1,11 @@
 <?php
     include '../../includes/header.php';
     include '../../includes/nav.php';
+    include '../../includes/script.php';
     if(empty($_GET['usr'])){
         header('Location: usuarios.php');
     }
     
-    /*include 'permissions.php';*/
     $consult = Consult_user($_GET['usr']);
     function Consult_user($id){
 
@@ -16,7 +16,7 @@
     $rows = $result->fetch_assoc();
 
     return[
-        //aquí deben ir las columnas de la base de datos
+        //aquí van las columnas de la base de datos
         $rows['id'],//0
         $rows['nombre'],//1
         $rows['usuario'],//2

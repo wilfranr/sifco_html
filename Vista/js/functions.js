@@ -479,6 +479,7 @@ function UserCreate() {
     });
 }
 
+//alerta de cliente creado
 function ClientCreate() {
     swal.fire({
         title: "Cliente Creado!!!",
@@ -489,6 +490,7 @@ function ClientCreate() {
     });
 }
 
+//Alerta de Proveedor creado
 function ProviderCreate() {
     swal.fire({
         title: "Proveedor Creado!!!",
@@ -499,6 +501,7 @@ function ProviderCreate() {
     });
 }
 
+//Alerta de producto creado
 function ProductCreate() {
     swal.fire({
         title: "Producto Agregado!!!",
@@ -509,6 +512,7 @@ function ProductCreate() {
     });
 }
 
+//Alerta de Id existente
 function IdExist() {
     swal.fire({
         title: "Error!",
@@ -520,6 +524,7 @@ function IdExist() {
     });
 }
 
+//alerta de usuario borrado
 function UserDelete() {
     swal.fire({
         title: "Éxito",
@@ -706,15 +711,7 @@ function PasswordEdit() {
     });
 }
 
-function prueba() {
-    swal.fire({
-        title: "Prueba",
-        text: "mensaje de prueba!!",
-        type: "success",
-        icon: "success",
-    });
-}
-
+//alerta de producto agregado
 function addedProduct() {
     swal.fire({
         title: "Exito!!!",
@@ -724,6 +721,7 @@ function addedProduct() {
     });
 }
 
+//Alerta de producto modificado
 function editedProduct() {
     swal.fire({
         title: "Exito!!!",
@@ -735,6 +733,7 @@ function editedProduct() {
     });
 }
 
+//alerta de error al agregar producto
 function errorProduct() {
     swal.fire({
         title: "Error!!!",
@@ -744,6 +743,7 @@ function errorProduct() {
     });
 }
 
+//Error de datos incorrectos
 function errorData() {
     swal.fire({
         title: "Error!!!",

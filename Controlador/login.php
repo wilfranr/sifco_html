@@ -21,7 +21,7 @@ function Consult($user, $pass)
             $user = $rows['usuario'];
             $usuario_id = $rows['codUsuario'];
         }
-
+//Guardar variables de sesión
         session_start();
         $_SESSION['active'] = true;
         $_SESSION['rol'] = $rol;

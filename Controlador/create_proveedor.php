@@ -11,12 +11,13 @@ function newCliente($proveedor,$id, $typeId, $contacto, $dir, $tel, $email){
         $result = $conexion->query($sentence) or die ("Error al Consultar BD: " .mysqli_error($conexion));
 
         $rows = mysqli_num_rows($result);
-        if ($rows>0){
+        if ($rows>0){//validación de proveedor existente
             echo'<script>
                     IdExist()
                 </script>';
         }else if($rows==0){
             include '../includes/conexion.php';
+            //Creando proveedor
             $sentence2 = "INSERT INTO proveedor (proveedor, id, tipoIdProveedor, contacto, direccion, telefono, correo) VALUES ( '".$proveedor."', '".$id."', '".$typeId."', '".$contacto."', '".$dir."', '".$tel."', '".$email."' )";
             $conexion->query($sentence2) or die ("Error al crear el proveedor: ".mysqli_error($conexion));
 

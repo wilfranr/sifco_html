@@ -4,6 +4,7 @@
     include '../../includes/nav.php';
     include '../../includes/script.php';
 
+//Validación de usuario logueado
     if ($_SESSION['rol'] == 'Administrador'||$_SESSION['rol']=='Vendedor'){
 ?>
 <!DOCTYPE html>
@@ -69,6 +70,7 @@
         ?>
     
     </table><br><br>
+
 
             <div class="paginador">
             <ul>

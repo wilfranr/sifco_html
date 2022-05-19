@@ -127,7 +127,7 @@ include "../../includes/conexion.php";
     </section>
     <?php include "../../includes/footer.php"?>
 
-    <!-- funcion para conservar detalle -->
+    <!-- funcion para conservar detalle despues de actualizar-->
     <script type="text/javascript">
         $(document).ready(function () {
             var usuarioid = <?php echo $_SESSION['codUsuario'];?>;

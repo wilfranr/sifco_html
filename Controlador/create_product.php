@@ -10,6 +10,7 @@ function newProduct($nombre,$descripcion, $costo, $precio, $cantidad, $fechavenc
     
         
             include '../includes/conexion.php';
+            //creando proveedor
             $sentence2 = "INSERT INTO producto (nombre, descripcion, costo, precio, existencia, fechaVencimiento, foto, usuario_id) VALUES ( '".$nombre."', '".$descripcion."', '".$costo."', '".$precio."', '".$cantidad."', '".$fechavence."', '".$foto."', '".$id."'  )";
             $conexion->query($sentence2) or die ("Error al crear el producto: ".mysqli_error($conexion));
 

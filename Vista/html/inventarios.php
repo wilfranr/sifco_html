@@ -4,7 +4,6 @@ include '../../includes/conexion.php';
 include '../../includes/header.php';
 include '../../includes/nav.php';
 include '../../includes/script.php';
-// echo '<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
 if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
 ?>
     <!DOCTYPE html>

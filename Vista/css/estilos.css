@@ -29,13 +29,6 @@ body {
     display: none;
 }
 
-
-/* .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
-
 .icon {
     color: #6c757d;
     text-decoration: none;
@@ -155,6 +148,7 @@ body {
     color: #6c757d;
 }
 
+/* responsive */
 @media screen and (max-width: 800px) {
     .card h4 {
         font-size: 1em;
@@ -873,6 +867,7 @@ tr.par {
 }
 
 .imprimir-descargar {
+    align-items: flex-start;
     color: #2471A3;
     width: 7%;
     float: right;
@@ -1005,7 +1000,6 @@ tr.par {
     margin-left: 12%;
     padding: 20px;
     box-shadow: 7px 13px 37px #000;
-    /* float: left; */
     background: #6c757d;
     display: block;
 }

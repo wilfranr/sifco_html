@@ -9,7 +9,7 @@ include '../includes/script.php';
         $pass2md5 = md5(mysqli_real_escape_string($conexion, $pass2));
         
         
-        if ($passmd5==$pass2md5){
+        if ($passmd5==$pass2md5){//verificación de que los password coincidan
             
             $sentence="UPDATE usuario SET clave = '".$passmd5."' WHERE id = '".$id."' ";
             $conexion->query($sentence) or die ("Error al modificar password: ".mysqli_error($conexion));
