@@ -59,7 +59,9 @@ include '../../includes/conexion.php'
             <label for="consulta-codigo">USUARIO</label>
             <input class="control-usuario" name="user" value="<?php echo $consult[2]?>" type="text" required readonly><br><br>
             
-            <label for="consulta-palabra">PASSWORD</label>
+            <label for="consulta-palabra">PASSWORD ANTERIOR</label>
+            <input class="control-usuario" value="" name="pass-old" type="password" ><br><br>
+            <label for="consulta-palabra">PASSWORD NUEVA</label>
             <input class="control-usuario" value="" name="pass" type="password" ><br><br>
             <label for="consulta-palabra">CONFIRME SU PASSWORD</label>
             <input class="control-usuario" value="" name="pass2" type="password" ><br><br><br>

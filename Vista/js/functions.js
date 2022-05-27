@@ -836,3 +836,14 @@ function procesarVenta(procesarVenta) {
             })
         }
 }
+
+//password incorrecta
+function PasswordIncorrect() {
+    swal.fire({
+        icon: 'error',
+        title: 'Password incorrecto',
+        closeModal: false
+    }).then(function back() {
+        history.back();
+    });
+}
