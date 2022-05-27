@@ -2,6 +2,7 @@
 include '../../includes/header.php';
 include '../../includes/conexion.php';
 include '../../includes/nav.php';
+include '../../includes/script.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">

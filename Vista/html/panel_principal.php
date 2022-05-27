@@ -41,7 +41,7 @@ include '../../includes/script.php'
                 <a href="proveedores.php"><img src="../img/PROVEEDORES.png" alt="proveedores" width="200px"></a>
                 <h4>PROVEEDORES</h4>
             </div>
-            <div class="col">
+            <div class="col card-usuarios">
                 <a href="usuarios.php"><img src="../img/USUARIOS.png" alt="usuarios" width="200px"></a>
                 <h4>USUARIOS</h4>
             </div>
@@ -58,9 +58,8 @@ include '../../includes/script.php'
     if ($_SESSION['rol'] == 'Vendedor') {
     ?>
         <style>
-            .card-usuarios,
-            .card-reportes {
-                display: none;
+            .card-usuarios {
+                display: none !important;
             }
         </style>
     <?php } ?>

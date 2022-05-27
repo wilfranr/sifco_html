@@ -1,14 +1,9 @@
 <?php
-include '../../includes/header.php';
-include '../../includes/script.php';
-
-include '../../includes/conexion.php';
-
-include '../../includes/nav.php';
-if ($_SESSION['rol'] == 'Administrador') {
-    
-    
-    
+    include '../../includes/conexion.php';
+    include '../../includes/header.php';
+    include '../../includes/script.php';
+    if ($_SESSION['rol'] == 'Administrador') {    
+    include '../../includes/nav.php';
 ?>
 
     <!DOCTYPE html>

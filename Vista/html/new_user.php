@@ -19,7 +19,7 @@
     <!--Creación de  usuario-->
     <div class="agregar-usuario" id="modificar-usuario">
     
-        <form action="../../../Controlador/create_user.php" class="inventario" method="POST">
+        <form action="../../Controlador/create_user.php" class="inventario" method="POST">
             <h3>CREAR USUARIO</h3><br>        
             <label for="consulta-codigo">NOMBRES</label>
             <input class="control-usuario" name="name" type="text" required><br><br>

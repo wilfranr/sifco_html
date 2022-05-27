@@ -1,6 +1,7 @@
 <?php
     include '../../includes/header.php';
     include '../../includes/nav.php';
+    include '../../includes/script.php';
     
     if(empty($_GET['usr'])){
         header('Location: clientes.php');
