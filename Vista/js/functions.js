@@ -467,6 +467,17 @@ function UserModify() {
         window.location = "../Vista/html/usuarios.php";
     });
 }
+//Alerta empresa modificada
+function EmpresaModify() {
+    swal.fire({
+        title: "Éxito",
+        text: "Empresa Modificada!!",
+        type: "success",
+        icon: "success",
+    }).then(function () {
+        window.location = "../Vista/html/configuracion.php";
+    });
+}
 
 //Alerta Usuario creado
 function UserCreate() {
@@ -665,7 +676,35 @@ function DeleteProduct() {
         });
     });
 }
+//Eliminar empresa
+function DeleteEmpresa() {
+    $(".tabla-usuarios").click(function () {
+        var id = $(this).find("td:eq(0)").text();
+        console.log(id);
+        Swal.fire({
+            title: 'Deseas eliminar la Empresa?',
+            text: "Esta accion no se puede deshacer!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Eliminado!',
+                    'El registro ha sido eliminado!',
+                    'success'
+                ).then(function () {
 
+                    window.location = "../../Controlador/delete_user.php?usr=" + id;
+                })
+            } else {
+                window.location.href = "../html/usuarios.php";
+            }
+        });
+    });
+}
 //Alerta password diferentes
 function DiferentPassword() {
     swal.fire({

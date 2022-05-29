@@ -47,6 +47,10 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                 <a href="usuarios.php"><img src="../img/USUARIOS.png" alt="usuarios" width="200px"></a>
                 <h4>USUARIOS</h4>
             </div>
+            <div class="col card-usuarios card-restricted">
+                <a href="configuracion.php"><img src="../img/settings.png" alt="configuracion" width="200px"></a>
+                <h4>CONFIGURACIÓN</h4>
+            </div>
             <div class="col card-usuarios">
                 <a href="ayuda.php"><img src="../img/AYUDA.png" alt="ayuda" width="200px"></a>
                 <h4>AYUDA</h4>
