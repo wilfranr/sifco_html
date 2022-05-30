@@ -1,8 +1,10 @@
 <?php
     include '../../includes/header.php';
     include '../../includes/conexion.php';
-    include '../../includes/nav.php';
     include '../../includes/script.php';
+    if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Superusuario') {    
+        include '../../includes/nav.php';
+    ?>
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,5 +54,10 @@
     
 </body>
 
-<?php include '../../includes/footer.php' ?>
+<?php include '../../includes/footer.php'; 
+} else {
+    echo '<script>
+            UserNoAccess()
+        </script>';
+}?>
 </html>

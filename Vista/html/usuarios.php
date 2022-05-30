@@ -2,7 +2,7 @@
     include '../../includes/conexion.php';
     include '../../includes/header.php';
     include '../../includes/script.php';
-    if ($_SESSION['rol'] == 'Administrador') {    
+    if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Superusuario') {    
     include '../../includes/nav.php';
 ?>
 

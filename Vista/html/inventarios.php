@@ -4,7 +4,7 @@ include '../../includes/conexion.php';
 include '../../includes/header.php';
 include '../../includes/nav.php';
 include '../../includes/script.php';
-if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
+if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor' || $_SESSION['rol'] == 'Superusuario') {
 ?>
     <!DOCTYPE html>
     <html lang="es">

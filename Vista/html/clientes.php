@@ -5,7 +5,7 @@
     include '../../includes/script.php';
 
 //Validación de usuario logueado
-    if ($_SESSION['rol'] == 'Administrador'||$_SESSION['rol']=='Vendedor'){
+    if ($_SESSION['rol'] == 'Administrador'||$_SESSION['rol']=='Vendedor' || $_SESSION['rol'] == 'Superusuario'){
 ?>
 <!DOCTYPE html>
 <html lang="es">
