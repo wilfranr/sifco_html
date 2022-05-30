@@ -511,6 +511,16 @@ function ProviderCreate() {
         window.location = "../Vista/html/proveedores.php";
     });
 }
+//Alerta de Empresa creada
+function EmpresaCreate() {
+    swal.fire({
+        title: "Empresa Creada!!!",
+        type: "success",
+        icon: "success",
+    }).then(function () {
+        window.location = "../Vista/html/configuracion.php";
+    });
+}
 
 //Alerta de producto creado
 function ProductCreate() {
@@ -528,6 +538,17 @@ function IdExist() {
     swal.fire({
         title: "Error!",
         text: "Identificacion ya existe!",
+        type: "error",
+        icon: "error",
+    }).then(function back() {
+        history.back();
+    });
+}
+//Alerta de empresa existente
+function EmpresaExist() {
+    swal.fire({
+        title: "Error!",
+        text: "Empresa ya existe!",
         type: "error",
         icon: "error",
     }).then(function back() {
@@ -697,10 +718,10 @@ function DeleteEmpresa() {
                     'success'
                 ).then(function () {
 
-                    window.location = "../../Controlador/delete_user.php?usr=" + id;
+                    window.location = "../../Controlador/delete_empresa.php?usr=" + id;
                 })
             } else {
-                window.location.href = "../html/usuarios.php";
+                window.location.href = "../html/configuracion.php";
             }
         });
     });
@@ -715,7 +736,7 @@ function DiferentPassword() {
         history.back();
     });
 }
-//Alerta si datos ya existen
+//Alerta si password ya existen
 function UserPasswordExists() {
     swal.fire({
         icon: 'error',

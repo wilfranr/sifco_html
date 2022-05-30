@@ -104,13 +104,7 @@
                 </ul>
             </div>
 
-            <form action="search.php" method="GET">
-                <label id="buscar" for="buscar">Consultar Base de Datos </label>
-                <input type="text" class="control-buscar" id="busqueda" name="search" placeholder="Ingrese término a buscar">
-                <input class="btn-buscar" type="submit" value="Buscar" name="buscar"><br><br><br>
-            </form>
-
-            <a href="new_user.php"><input class="btn-crear" type="button" value="Crear Usuario"></a>
+            <a href="new_empresa.php"><input class="btn-crear" type="button" value="Crear Empresa"></a>
         </div>
 
 
