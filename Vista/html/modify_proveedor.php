@@ -1,6 +1,7 @@
 <?php
     include '../../includes/header.php';
     include '../../includes/nav.php';
+    include '../../includes/script.php';
     
     if(empty($_GET['usr'])){
         header('Location: proveedores.php');
@@ -42,6 +43,7 @@ include '../../includes/conexion.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Vista/css/estilos.css">
     <link rel="stylesheet" href="../font.css">
+    <script type="text/javascript" src="../js/functions.js"></script>
     <title>Modificar Proveedor</title>
 </head>
 
@@ -64,8 +66,9 @@ include '../../includes/conexion.php'
             </select><br><br>
             <label for="consulta-codigo">CONTACTO</label>
             <input class="control-usuario" name="contacto" value="<?php echo $consult[4]?>" type="text" required><br><br>
-            <label for="codproveedor">CODIGO</label>
-            <input class="control-usuario" name="codproveedor" value="<?php echo $consult[0]?>" type="text" required readonly><br><br>
+            
+            <input class="control-usuario" name="codproveedor" value="<?php echo $consult[0]?>" type="hidden" required readonly>
+            
             <label for="consulta-palabra">DIRECCIÓN</label>
             <input class="control-usuario" name="dir" value="<?php echo $consult[5]?>" type="text" ><br><br>
             <label for="consulta-palabra">TELÉFONO</label>

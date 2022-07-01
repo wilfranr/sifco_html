@@ -2,6 +2,8 @@
     include '../../includes/conexion.php';
     include '../../includes/header.php';
     include '../../includes/nav.php';
+    include '../../includes/script.php';
+
 
 ?>
 
@@ -12,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Buscar Proveedor</title>
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>
@@ -30,7 +33,8 @@
     <div class="container-tabla-usuarios">
     <h1>PROVEEDORES</h1><br>
     <table class="tabla-usuarios">
-        <th>Código</th>
+        <th>Id.</th>
+        <th>Tipo.Id</th>
         <th>Proveedor</th>
         <th>Contacto</th>
         <th>Direccion</th>
@@ -57,7 +61,7 @@
             $total_paginas=ceil($total_registro/$por_pagina);
             
             //query para la busqueda
-            $sentence="SELECT codproveedor, proveedor, contacto, direccion, telefono, correo FROM proveedor WHERE codproveedor LIKE '%$search%' OR proveedor LIKE '%$search%' OR contacto LIKE '%$search%' OR direccion LIKE '%$search%' OR telefono LIKE '%$search%' OR correo LIKE '%$search%' ORDER BY contacto LIMIT $desde, $por_pagina";
+            $sentence="SELECT id, tipoIdProveedor, proveedor, contacto, direccion, telefono, correo FROM proveedor WHERE id LIKE '%$search%' OR tipoIdProveedor LIKE '%$search' OR proveedor LIKE '%$search%' OR contacto LIKE '%$search%' OR direccion LIKE '%$search%' OR telefono LIKE '%$search%' OR correo LIKE '%$search%' ORDER BY contacto LIMIT $desde, $por_pagina";
             $result = $conexion->query($sentence) or die ("Error al consultar: " .mysqli_error($conexion));
             mysqli_close($conexion);
             
@@ -65,14 +69,15 @@
             {
         ?>
                 <tr>
-                    <td><?php echo $rows['codproveedor']?></td>
+                    <td><?php echo $rows['id']?></td>
+                    <td><?php echo $rows['tipoIdProveedor']?></td>
                     <td><?php echo $rows['proveedor']?></td>
                     <td><?php echo $rows['contacto']?></td>
                     <td><?php echo $rows['direccion']?></td>
                     <td><?php echo $rows['telefono']?></td>
                     <td><?php echo $rows['correo']?></td>
-                    <td><a href="modify_proveedor.php?usr=<?php echo $rows['codproveedor'] ?>"><input class="btn-modificar" type="button" value="Modificar"></a></td>
-                    <td><a href="delete_proveedor.php?usr=<?php echo $rows['codproveedor'] ?>"><input class="btn-eliminar" type="button" value="Eliminar"></a></td>
+                    <td><a href="modify_proveedor.php?usr=<?php echo $rows['codproveedor'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></a></td>
+                    <td><a href="#" onclick="DeleteProvider()"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
                 </tr>
         <?php
             }

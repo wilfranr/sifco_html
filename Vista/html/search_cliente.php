@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Buscar Cliente</title>
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>
@@ -70,8 +71,8 @@
                     <td><?php echo $rows['telefono']?></td>
                     <td><?php echo $rows['correo']?></td>
                     <td><?php echo $rows['tipoId']?></td>
-                    <td><a href="modify_cliente.php?usr=<?php echo $rows['id'] ?>"><input class="btn-modificar" type="button" value="Modificar"></a></td>
-                    <td><a href="delete_cliente.php?usr=<?php echo $rows['id'] ?>"><input class="btn-eliminar" type="button" value="Eliminar"></a></td>
+                    <td><a href="modify_cliente.php?usr=<?php echo $rows['id'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></a></td>
+                    <td><a href="#" onclick="DeleteClient()"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
                 </tr>
         <?php
             }
