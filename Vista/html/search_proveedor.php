@@ -4,7 +4,6 @@
     include '../../includes/nav.php';
     include '../../includes/script.php';
 
-
 ?>
 
 <!DOCTYPE html>
