@@ -55,10 +55,28 @@ if($_SESSION['rol'] == 'Vendedor'){
                     <li><a href="inventarios.php">INVENTARIO</a></li>
                     <li><a href="usuarios.php">USUARIOS</a></li>
                     <li><a href="ayuda.php">AYUDA</a></li>
+                    <li class="link-config"><a href="configuracion.php">CONFIGURACIÓN</a></li>
                     
                 </ul>
             </nav>
         </div>
+        <style>
+        .link-config{
+            display: none !important;
+            text-align: center;
+        }
+        </style>
+        <?php
+            if ($_SESSION['rol'] == 'Superusuario') {
+                ?>
+                <style>
+                .link-config{
+                    display: block !important;
+                }
+                </style>
+                <?php
+            }
+        ?>
         
     </body>
     </html>

@@ -2,7 +2,7 @@
     include '../../includes/conexion.php';
     include '../../includes/header.php';
     include '../../includes/script.php';
-    if ($_SESSION['rol'] == 'Administrador') {    
+    if ($_SESSION['rol'] == 'Superusuario') {    
     include '../../includes/nav.php';
 ?>
 
@@ -56,7 +56,6 @@
                 ?>
                     <tr>
                         <td><?php echo $rows['nit'] ?></td>
-                        <!-- <td id="id"><?php echo $rows['id'] ?></td> -->
                         <td><?php echo $rows['nombre'] ?></td>
                         <td><?php echo $rows['razon_social'] ?></td>
                         <td><?php echo $rows['direccion'] ?></td>
@@ -104,13 +103,7 @@
                 </ul>
             </div>
 
-            <form action="search.php" method="GET">
-                <label id="buscar" for="buscar">Consultar Base de Datos </label>
-                <input type="text" class="control-buscar" id="busqueda" name="search" placeholder="Ingrese término a buscar">
-                <input class="btn-buscar" type="submit" value="Buscar" name="buscar"><br><br><br>
-            </form>
-
-            <a href="new_user.php"><input class="btn-crear" type="button" value="Crear Usuario"></a>
+            <a href="new_empresa.php"><input class="btn-crear" type="button" value="Crear Empresa"></a>
         </div>
 
 

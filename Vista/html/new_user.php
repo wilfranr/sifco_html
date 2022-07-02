@@ -42,7 +42,11 @@
             <label for="tipo-usuario">TIPO DE USUARIO</label>
             <select name="type" id="tipo-id" required>
             <option disabled value="" style="color: white;">Seleccione una opcion</option>
-            <option>Superusuario</option>
+            <?php
+                if ($_SESSION['rol'] == 'Superusuario') {
+                    echo '<option>Superusuario</option>';
+                }
+            ?>
             <option>Vendedor</option>
             <option>Administrador</option>
             </select><br><br>

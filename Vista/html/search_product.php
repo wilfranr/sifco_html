@@ -157,7 +157,7 @@ include '../../includes/script.php';
     <input class="btn-buscar" type="submit" value="Buscar"><br><br><br>
 </form>
 
-<a href="new_user.php"><input class="btn-crear" type="button" value="Crear Usuario"></a>
+<a href="new_product2.php"><input class="btn-crear" type="button" value="Agregar Producto"></a>
 </div>
 
 </body>

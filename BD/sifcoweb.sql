@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-05-2022 a las 15:28:30
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.28
+-- Tiempo de generación: 30-05-2022 a las 23:05:41
+-- Versión del servidor: 10.4.16-MariaDB
+-- Versión de PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_precio_producto` (`n_cantidad` INT, `n_precio` DECIMAL(10,2), `codigo` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_precio_producto` (`n_cantidad` INT, `n_precio` DECIMAL(10,2), `codigo` INT)  BEGIN
     	DECLARE nueva_existencia int;
         DECLARE nuevo_total  decimal(10,2);
         DECLARE nuevo_precio decimal(10,2);
@@ -47,7 +47,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_precio_producto` (`n_can
         
     END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_detalle_temp` (IN `codigo` INT, IN `cantidad` INT, IN `token_user` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_detalle_temp` (IN `codigo` INT, IN `cantidad` INT, IN `token_user` VARCHAR(50))  BEGIN
 		DECLARE precio_actual decimal(10,2);
 		SELECT precio INTO precio_actual FROM producto WHERE codproducto = codigo;
         
@@ -59,7 +59,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `add_detalle_temp` (IN `codigo` INT,
         WHERE tmp.token_user = token_user;
 	END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `del_detalle_temp` (IN `id_detalle` INT, IN `token` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `del_detalle_temp` (IN `id_detalle` INT, IN `token` VARCHAR(50))  BEGIN
     	DELETE FROM detalle_temp WHERE correlativo = id_detalle;
         
         SELECT tmp.correlativo, tmp.codproducto, p.nombre, p.descripcion, tmp.cantidad,tmp.precio_venta FROM detalle_temp tmp
@@ -68,7 +68,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `del_detalle_temp` (IN `id_detalle` 
         WHERE tmp.token_user = token;
     END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `procesar_venta` (`cod_usuario` INT, `cod_cliente` INT, `token` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `procesar_venta` (`cod_usuario` INT, `cod_cliente` INT, `token` VARCHAR(50))  BEGIN
     	
         DECLARE factura INT;
         DECLARE registros INT;
@@ -170,7 +170,8 @@ CREATE TABLE `configuracion` (
 --
 
 INSERT INTO `configuracion` (`id`, `nit`, `nombre`, `razon_social`, `telefono`, `email`, `direccion`, `iva`) VALUES
-(1, 111222333, 'Trapiche', 'Trapiche Panelero', '11111111', 'wilfranr@misena.edu.co', 'Av. Siempre viva 123', 19);
+(1, 123456789, 'Trapiche Panelero', 'Trapiche Panelero', '2222222', 'trapiche@panlero.com', 'Ave Siempre viva 123', 19),
+(2, 888888, 'DomyNico', 'DomyNico', '2222222', 'dom@domynico.net', '3232', 12);
 
 -- --------------------------------------------------------
 
@@ -241,7 +242,8 @@ INSERT INTO `detallefactura` (`correlativo`, `nofactura`, `codproducto`, `cantid
 (54, 45, 1, 1, '2500'),
 (55, 46, 1, 1, '2500'),
 (56, 47, 1, 9, '2500'),
-(57, 47, 3, 8, '35000');
+(57, 47, 3, 8, '35000'),
+(58, 48, 1, 10, '2500');
 
 -- --------------------------------------------------------
 
@@ -358,7 +360,8 @@ INSERT INTO `factura` (`nofactura`, `fecha`, `usuario`, `codcliente`, `totalfact
 (44, '2022-05-16 17:46:03', 7, 1, '2500', 1),
 (45, '2022-05-16 17:49:14', 7, 1, '2500', 1),
 (46, '2022-05-16 17:51:04', 7, 1, '2500', 1),
-(47, '2022-05-19 16:56:09', 45, 15, '302500', 1);
+(47, '2022-05-19 16:56:09', 45, 15, '302500', 1),
+(48, '2022-05-29 11:17:10', 45, 14, '25000', 1);
 
 -- --------------------------------------------------------
 
@@ -386,7 +389,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`codproducto`, `nombre`, `descripcion`, `proveedor`, `costo`, `precio`, `cantidad`, `date_add`, `fechaVencimiento`, `usuario_id`, `estatus`, `foto`) VALUES
-(1, 'Panela', 'Panela 500gr', 19, '1810', '2500', 90, '2022-01-29 12:28:16', '2023-02-07', 7, 1, 'panela.jpg'),
+(1, 'Panela', 'Panela 500gr', 19, '1810', '2500', 80, '2022-01-29 12:28:16', '2023-02-07', 7, 1, 'panela.jpg'),
 (2, 'aceite', 'aceite 1litro', 1, '25000', '35000', 25, '2021-10-23 13:55:26', '2022-10-28', 7, 1, 'aceite.jpg'),
 (3, 'aceite', 'aceite 1litro', 4, '25000', '35000', 41, '2021-10-23 13:55:35', '2022-10-28', 7, 1, 'aceite.jpg'),
 (4, 'cajas', 'cajas 10*20', 5, '650', '1200', 26, '2021-11-25 11:33:06', '2021-11-25', 7, 1, 'img_producto.png'),
@@ -459,6 +462,7 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`idrol`, `rol`) VALUES
 (1, 'Administrador'),
+(3, 'Superusuario'),
 (2, 'Vendedor');
 
 -- --------------------------------------------------------
@@ -485,10 +489,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`codUsuario`, `id`, `tipoId`, `nombre`, `direccion`, `telefono`, `correo`, `usuario`, `clave`, `rol`) VALUES
-(7, '80896995', 'CC', 'Yoseth Rivera', 'tv 70D bis # 68-75 sur', '+573137038949', 'wilfranr@gmail.com', 'wilfranr', '6a7e0c5e58f73f506b9514c0f4a5e015', 'Administrador'),
+(7, '80896995', 'CC', 'Yoseth Rivera', 'tv 70D bis # 68-75 sur', '+573137038949', 'wilfranr@gmail.com', 'wilfranr', '6a7e0c5e58f73f506b9514c0f4a5e015', 'Superusuario'),
 (37, '1024481734', 'CC', 'Maira Lizeth Perez', 'calle 40 sur # 77 a 97', '3002656511', 'wilfranr@gmail.com', 'maira1', '827ccb0eea8a706c4c34a16891f84e7b', 'Vendedor'),
 (43, '654321', 'CE', 'alejo', 'tas', '6565', '6565@6565', 'alejo01', '827ccb0eea8a706c4c34a16891f84e7b', 'Vendedor'),
-(44, '12345', 'CC', 'adsi1', '1234qwery', '12345', 'adsi@adsi', 'adsi1', '827ccb0eea8a706c4c34a16891f84e7b', 'Administrador'),
+(44, '12345', 'CC', 'adsi1', '1234qwery', '12345', 'adsi@adsi', 'adsi1', '5b888244daa65df950ebee697673ddab', 'Administrador'),
 (45, '3434', 'CC', 'adsi2', '1234qwery', 'asdasd', 'wilfran@r', 'adsi2', '827ccb0eea8a706c4c34a16891f84e7b', 'Vendedor');
 
 --
@@ -579,19 +583,19 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `configuracion`
 --
 ALTER TABLE `configuracion`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `detallefactura`
 --
 ALTER TABLE `detallefactura`
-  MODIFY `correlativo` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `correlativo` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
-  MODIFY `correlativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
+  MODIFY `correlativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
 -- AUTO_INCREMENT de la tabla `entradas`
@@ -603,7 +607,7 @@ ALTER TABLE `entradas`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `nofactura` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `nofactura` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -621,7 +625,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

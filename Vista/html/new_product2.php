@@ -4,7 +4,7 @@ include '../../includes/header.php';
 include '../../includes/nav.php';
 include '../../includes/script.php';
 echo '<script type="text/javascript" src="../js/functions.js"></script>';
-if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
+if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor' || $_SESSION['rol'] == 'Superusuario') {
 
     if (!empty($_POST)) {
 

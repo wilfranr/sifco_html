@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Buscar Proveedor</title>
-    <script src="../js/functions.js"></script>
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>
@@ -32,7 +32,8 @@
     <div class="container-tabla-usuarios">
     <h1>PROVEEDORES</h1><br>
     <table class="tabla-usuarios">
-        <th>Código</th>
+        <th>Id.</th>
+        <th>Tipo.Id</th>
         <th>Proveedor</th>
         <th>Contacto</th>
         <th>Direccion</th>
@@ -59,7 +60,7 @@
             $total_paginas=ceil($total_registro/$por_pagina);
             
             //query para la busqueda
-            $sentence="SELECT codproveedor, proveedor, contacto, direccion, telefono, correo FROM proveedor WHERE codproveedor LIKE '%$search%' OR proveedor LIKE '%$search%' OR contacto LIKE '%$search%' OR direccion LIKE '%$search%' OR telefono LIKE '%$search%' OR correo LIKE '%$search%' ORDER BY contacto LIMIT $desde, $por_pagina";
+            $sentence="SELECT id, tipoIdProveedor, proveedor, contacto, direccion, telefono, correo FROM proveedor WHERE id LIKE '%$search%' OR tipoIdProveedor LIKE '%$search' OR proveedor LIKE '%$search%' OR contacto LIKE '%$search%' OR direccion LIKE '%$search%' OR telefono LIKE '%$search%' OR correo LIKE '%$search%' ORDER BY contacto LIMIT $desde, $por_pagina";
             $result = $conexion->query($sentence) or die ("Error al consultar: " .mysqli_error($conexion));
             mysqli_close($conexion);
             
@@ -67,7 +68,8 @@
             {
         ?>
                 <tr>
-                    <td><?php echo $rows['codproveedor']?></td>
+                    <td><?php echo $rows['id']?></td>
+                    <td><?php echo $rows['tipoIdProveedor']?></td>
                     <td><?php echo $rows['proveedor']?></td>
                     <td><?php echo $rows['contacto']?></td>
                     <td><?php echo $rows['direccion']?></td>

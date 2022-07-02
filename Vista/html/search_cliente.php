@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Buscar Cliente</title>
-    <script src="../js/functions.js"></script>
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>

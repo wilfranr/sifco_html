@@ -2,7 +2,7 @@
 include '../..//includes/header.php';
 include '../..//includes/conexion.php';
 include '../../includes/script.php';
-if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
+if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor' || $_SESSION['rol'] == 'Superusuario') {
 
 ?>
 
@@ -47,7 +47,7 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
                 <a href="usuarios.php"><img src="../img/USUARIOS.png" alt="usuarios" width="200px"></a>
                 <h4>USUARIOS</h4>
             </div>
-            <div class="col card-usuarios card-restricted">
+            <div class="col card-usuarios card-config">
                 <a href="configuracion.php"><img src="../img/settings.png" alt="configuracion" width="200px"></a>
                 <h4>CONFIGURACIÓN</h4>
             </div>
@@ -61,21 +61,33 @@ if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Vendedor') {
 
     <?php
     //Validación de elementos que se muestran segun rol de usuario
-    if ($_SESSION['rol'] == 'Vendedor') {
+    if ($_SESSION['rol'] == 'Vendedor' ) {
     ?>
         <style>
             .card-restricted {
                 display: none !important;
             }
+            .card-config {
+                display: none !important;
+            }
         </style>
     <?php } ?>
+    <?php
+    //Validación de elementos que se muestran segun rol de usuario
+    if ($_SESSION['rol'] == 'Administrador' ) {
+    ?>
+        <style>
+            .card-config {
+                display: none !important;
+            }
+        </style>
 
 
 
 
 </body>
 
-<?php 
+<?php }
 include '../../includes/footer.php';
 
 }

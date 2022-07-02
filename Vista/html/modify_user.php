@@ -74,6 +74,11 @@ include '../../includes/conexion.php'
             <label for="tipo-usuario">TIPO DE USUARIO</label>
             <select class="noItem" name="type" id="tipo-id" required>
                 <option><?php echo $consult[4]?></option>
+                <?php
+                if ($_SESSION['rol'] == 'Superusuario') {
+                    echo '<option>Superusuario</option>';
+                }
+            ?>
                 <option>Vendedor</option>
                 <option>Administrador</option>
             </select><br><br>   

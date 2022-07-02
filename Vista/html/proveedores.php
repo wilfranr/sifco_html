@@ -5,7 +5,7 @@
     include '../../includes/script.php';
 
     //validación de usuario logueado    
-    if ($_SESSION['rol'] == 'Administrador'||$_SESSION['rol']=='Vendedor'){
+    if ($_SESSION['rol'] == 'Administrador'||$_SESSION['rol']=='Vendedor' || $_SESSION['rol'] == 'Superusuario'){
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,7 +21,6 @@
 <div class="container-tabla-usuarios">
     <h1>PROVEEDORES</h1><br>
     <table class="tabla-usuarios">
-        <th>Cod</th>
         <th>Id.</th>
         <th>Tipo.Id</th>
         <th>Proveedor</th>
@@ -56,7 +55,6 @@
             {
         ?>
                 <tr>
-                    <td id="id"><?php echo $rows['codproveedor']?></td>
                     <td><?php echo $rows['id']?></td>
                     <td><?php echo $rows['tipoIdProveedor']?></td>
                     <td><?php echo $rows['proveedor']?></td>

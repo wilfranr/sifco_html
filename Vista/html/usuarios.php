@@ -2,7 +2,7 @@
     include '../../includes/conexion.php';
     include '../../includes/header.php';
     include '../../includes/script.php';
-    if ($_SESSION['rol'] == 'Administrador') {    
+    if ($_SESSION['rol'] == 'Administrador' || $_SESSION['rol'] == 'Superusuario') {    
     include '../../includes/nav.php';
 ?>
 
@@ -49,9 +49,15 @@
                 $desde = ($pagina - 1) * $por_pagina;
                 $total_paginas = ceil($total_registro / $por_pagina);
 
-                $sentence = "SELECT * FROM usuario ORDER BY nombre LIMIT $desde, $por_pagina";
+                if ($_SESSION['rol'] == 'Superusuario') {
+                    $sentence = "SELECT * FROM usuario ORDER BY id DESC LIMIT $desde, $por_pagina";
+                } else {
+                    $sentence = "SELECT * FROM usuario WHERE rol != 'Superusuario' ORDER BY id DESC LIMIT $desde, $por_pagina";
+                }
                 $result = $conexion->query($sentence) or die("Error al consultar: " . mysqli_error($conexion));
                 mysqli_close($conexion);
+
+
 
                 while ($rows = $result->fetch_assoc()) {
                 ?>
