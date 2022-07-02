@@ -55,7 +55,6 @@
                 while ($rows = $result->fetch_assoc()) {
                 ?>
                     <tr>
-                        <td id="id"><?php echo $rows['id'] ?></td>
                         <td><?php echo $rows['nit'] ?></td>
                         <td><?php echo $rows['nombre'] ?></td>
                         <td><?php echo $rows['razon_social'] ?></td>
