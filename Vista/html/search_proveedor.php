@@ -64,10 +64,10 @@
             $result = $conexion->query($sentence) or die ("Error al consultar: " .mysqli_error($conexion));
             mysqli_close($conexion);
             
-            while($rows = $result->fetch_array())
+            while($rows = $result->fetch_assoc())
             {
         ?>
-                <tr>
+                 <tr>
                     <td><?php echo $rows['id']?></td>
                     <td><?php echo $rows['tipoIdProveedor']?></td>
                     <td><?php echo $rows['proveedor']?></td>
@@ -77,6 +77,7 @@
                     <td><?php echo $rows['correo']?></td>
                     <td><a href="modify_proveedor.php?usr=<?php echo $rows['codproveedor'] ?>"><i class="bi bi-pencil-square" style="font-size: 2rem; color: #198754;"></a></td>
                     <td><a href="#" onclick="DeleteProvider()"><i class="bi bi-trash-fill" style="font-size: 2rem; color: #dc3545;"></i></a></td>
+                    
                 </tr>
         <?php
             }
